@@ -1,0 +1,17 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/ansa-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_
+    (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).
+  sources:
+  - openapi/ansa-openapi-original.yml
