@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/errors
+envelope_field: declineCode
+notes: >-
+  Decline codes map to errors returned by the Payment Service Provider (PSP)
+  and are surfaced on the error object's declineCode field for card declines.
+  Ansa guidance: never return the raw decline code to the buyer (especially for
+  fraud); display the user-friendly message instead.
+masked_to_buyers: true
+decline_codes:
+  - code: GENERIC_DECLINE
+    user_message: We are unable to process your payment information. Please re-enter your payment details and try again.
+  - code: INSUFFICIENT_FUNDS
+    user_message: Your account does not have sufficient funds for this transaction. Please try again with a different payment method.
+  - code: FRAUDULENT_CHARGE
+    user_message: We are unable to process your payment information. Please re-enter your payment details and try again.
+  - code: INVALID_ACCOUNT
+    user_message: We are unable to process your payment information. Please re-enter your payment details and try again.
+  - code: INVALID_CVC
+    user_message: We are unable to process your payment information. Please re-enter your payment details and try again.
+  - code: EXPIRED_CARD
+    user_message: The card you entered has expired. Please re-enter the payment details or try with a different payment method.
+  - code: INVALID_EXPIRY_DATE
+    user_message: The card you entered has expired. Please re-enter the payment details or try with a different payment method.
+  - code: INVALID_NUMBER
+    user_message: We are unable to process your payment information. Please re-enter your payment details and try again.
+  - code: INCORRECT_AVS
+    user_message: The address or zip code entered does not match the card billing details on file. Please re-enter the address and try again.
+  - code: INVALID_AMOUNT
+    user_message: We are unable to process your payment information. Please try again.
+  - code: INVALID_REFUND
+    user_message: We are unable to process your payment information. Please try again.
+  - code: DUPLICATE_TRANSACTION
+    user_message: We are unable to process your payment information. Please try again.
+  - code: MERCHANT_ERROR
+    user_message: We are unable to process your payment information. Please try again.

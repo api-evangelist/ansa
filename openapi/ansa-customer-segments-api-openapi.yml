@@ -1,0 +1,481 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Customer Segments API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Customer Segments
+paths:
+  /v1/customer_segments/{segmentId}/customers:
+    post:
+      summary: Add customers to a segment
+      description: ''
+      operationId: add-customers-to-segment
+      parameters:
+      - name: segmentId
+        in: path
+        description: the id of the segment
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: customer id
+                    required:
+                    - id
+                    type: object
+      responses:
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+    delete:
+      summary: Remove customers from segment
+      description: ''
+      operationId: remove-user-from-segment
+      parameters:
+      - name: segmentId
+        in: path
+        description: the segment id
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: string
+                        description: customer id
+                    required:
+                    - id
+                    type: object
+      responses:
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+  /v1/customer_segments:
+    post:
+      summary: Create segment
+      description: ''
+      operationId: create-customer-segment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"id\": \"d0ad2310-eed2-4847-ae92-3720613dd3a4\",\n  \"createdAt\": \"2026-09-20T20:34:07.000Z\",\n  \"updatedAt\": \"2026-09-20T20:34:07.000Z\",\n  \"name\": \"Test Segment\",\n  \"totalCount\": 1232\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: d0ad2310-eed2-4847-ae92-3720613dd3a4
+                  createdAt:
+                    type: string
+                    example: '2026-09-20T20:34:07.000Z'
+                  updatedAt:
+                    type: string
+                    example: '2026-09-20T20:34:07.000Z'
+                  name:
+                    type: string
+                    example: Test Segment
+                  totalCount:
+                    type: integer
+                    example: 1232
+                    default: 0
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+    get:
+      summary: List segments
+      description: ''
+      operationId: list-segments
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"cursor\": \"cursor\",\n  \"data\": [\n\t  {\n\t\t  \"id\": \"d0ad2310-eed2-4847-ae92-3720613dd3a4\",\n\t\t  \"createdAt\": \"2026-09-20T20:34:07.000Z\",\n\t\t  \"updatedAt\": \"2026-09-20T20:34:07.000Z\",\n\t\t  \"name\": \"Test Segment\",\n\t\t\t\"totalCount\": 0\n\t\t}\n  ],\n  \"hasMore\": true\n}"
+              schema:
+                type: object
+                properties:
+                  cursor:
+                    type: string
+                    example: cursor
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: d0ad2310-eed2-4847-ae92-3720613dd3a4
+                        createdAt:
+                          type: string
+                          example: '2026-09-20T20:34:07.000Z'
+                        updatedAt:
+                          type: string
+                          example: '2026-09-20T20:34:07.000Z'
+                        name:
+                          type: string
+                          example: Test Segment
+                        totalCount:
+                          type: integer
+                          example: 0
+                          default: 0
+                  hasMore:
+                    type: boolean
+                    example: true
+                    default: true
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+  /v1/customer_segments/{segmentId}:
+    delete:
+      summary: Delete segment
+      description: ''
+      operationId: delete-customer-segments
+      parameters:
+      - name: segmentId
+        in: path
+        description: the id of the segment
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: ''
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+    get:
+      summary: List segment customers
+      description: ''
+      operationId: list-customers-in-segment
+      parameters:
+      - name: segmentId
+        in: path
+        description: the segment id
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"data\": [\n\t\t{\n\t\t    \"id\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n\t\t    \"merchantId\": \"f3735806-cc2f-4be7-ac29-8f28cb526402\",\n\t\t    \"phone\": \"tel:+1-415-555-0100\",\n\t\t    \"email\": \"klause.loupe@email.com\",\n\t\t    \"ansaMetadata\": {\n\t\t        \"isTapToPayEnabled\": false,\n\t\t        \"referralCode\": \"QCPYCP5I\",\n\t\t        \"square\": {\n\t\t            \"customerId\": \"\"\n\t\t        },\n\t\t        \"stripe\": {\n\t\t            \"customerId\": \"cus_SEb5W8j0J4qWYF\"\n\t\t        }\n\t\t    },\n\t\t    \"balance\": {\n\t\t        \"amount\": 0,\n\t\t        \"currency\": \"USD\"\n\t\t    },\n\t\t    \"billingDetails\": {\n\t\t        \"firstName\": \"Klaus\",\n\t\t        \"lastName\": \"Loupe\"\n\t\t    },\n\t\t    \"createdAt\": \"2025-05-02T00:56:05.910Z\",\n\t\t    \"metadata\": null,\n\t\t    \"status\": \"active\"\n\t\t}\n  ],\n  \"cursor\": \"cursor\",\n  \"hasMore\": true\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                        merchantId:
+                          type: string
+                          example: f3735806-cc2f-4be7-ac29-8f28cb526402
+                        phone:
+                          type: string
+                          example: tel:+1-415-555-0100
+                        email:
+                          type: string
+                          example: klause.loupe@email.com
+                        ansaMetadata:
+                          type: object
+                          properties:
+                            isTapToPayEnabled:
+                              type: boolean
+                              example: false
+                              default: true
+                            referralCode:
+                              type: string
+                              example: QCPYCP5I
+                            square:
+                              type: object
+                              properties:
+                                customerId:
+                                  type: string
+                                  example: ''
+                            stripe:
+                              type: object
+                              properties:
+                                customerId:
+                                  type: string
+                                  example: cus_SEb5W8j0J4qWYF
+                        balance:
+                          type: object
+                          properties:
+                            amount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            currency:
+                              type: string
+                              example: USD
+                        billingDetails:
+                          type: object
+                          properties:
+                            firstName:
+                              type: string
+                              example: Klaus
+                            lastName:
+                              type: string
+                              example: Loupe
+                        createdAt:
+                          type: string
+                          example: '2025-05-02T00:56:05.910Z'
+                        metadata: {}
+                        status:
+                          type: string
+                          example: active
+                  cursor:
+                    type: string
+                    example: cursor
+                  hasMore:
+                    type: boolean
+                    example: true
+                    default: true
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+    patch:
+      summary: Update segment
+      description: ''
+      operationId: update-segment
+      parameters:
+      - name: segmentId
+        in: path
+        description: The id of the segment
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: The name of the segment
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"id\": \"d0ad2310-eed2-4847-ae92-3720613dd3a4\",\n  \"createdAt\": \"2026-09-20T20:34:07.000Z\",\n  \"updatedAt\": \"2026-09-20T20:34:07.000Z\",\n  \"name\": \"Test Segment\",\n  \"totalCount\": 1232\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: d0ad2310-eed2-4847-ae92-3720613dd3a4
+                  createdAt:
+                    type: string
+                    example: '2026-09-20T20:34:07.000Z'
+                  updatedAt:
+                    type: string
+                    example: '2026-09-20T20:34:07.000Z'
+                  name:
+                    type: string
+                    example: Test Segment
+                  totalCount:
+                    type: integer
+                    example: 1232
+                    default: 0
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customer Segments
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

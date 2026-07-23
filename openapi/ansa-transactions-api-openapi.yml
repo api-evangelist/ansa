@@ -1,0 +1,345 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Transactions API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Transactions
+paths:
+  /v1/transactions/{transactionId}/refunds:
+    get:
+      description: ''
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        additionalInfo:
+                          type: object
+                          properties: {}
+                        label:
+                          type: string
+                          example: ''
+                        metadata:
+                          type: object
+                          properties: {}
+                        timestamp:
+                          type: string
+                          example: '2026-03-15T12:34:56.789Z'
+                        transactionId:
+                          type: string
+                          example: a2b3c4d5-e6f7-8901-2345-6789abcdef01
+                        amount:
+                          type: integer
+                          example: 15400
+                          default: 0
+                        created:
+                          type: string
+                          example: '2026-03-15T12:34:56.789Z'
+                        currency:
+                          type: string
+                          example: USD
+                        customerId:
+                          type: string
+                          example: 12345678-90ab-cdef-1234-567890abcdef
+                        from:
+                          type: string
+                          example: abcdef12-3456-7890-abcd-ef1234567890
+                        fromAccountId:
+                          type: string
+                          example: fedcba98-7654-3210-fedc-ba9876543210
+                        fromAccountReferenceId:
+                          type: string
+                          example: default
+                        reason:
+                          type: string
+                          example: ''
+                        to:
+                          type: string
+                          example: 12345678-90ab-cdef-1234-567890abcdef
+                        toAccountId:
+                          type: string
+                          example: 01234567-89ab-cdef-0123-456789abcdef
+                        toAccountReferenceId:
+                          type: string
+                          example: default
+                        transactionType:
+                          type: string
+                          example: merchant_refund
+                        transactionTypeDisplayName:
+                          type: string
+                          example: Refund to Balance
+              examples:
+                OK:
+                  summary: OK
+                  value:
+                    transactions:
+                    - additionalInfo: null
+                      label: ''
+                      metadata: null
+                      timestamp: '2026-03-15T12:34:56.789Z'
+                      transactionId: a2b3c4d5-e6f7-8901-2345-6789abcdef01
+                      amount: 15400
+                      created: '2026-03-15T12:34:56.789Z'
+                      currency: USD
+                      customerId: 12345678-90ab-cdef-1234-567890abcdef
+                      from: abcdef12-3456-7890-abcd-ef1234567890
+                      fromAccountId: fedcba98-7654-3210-fedc-ba9876543210
+                      fromAccountReferenceId: default
+                      reason: ''
+                      to: 12345678-90ab-cdef-1234-567890abcdef
+                      toAccountId: 01234567-89ab-cdef-0123-456789abcdef
+                      toAccountReferenceId: default
+                      transactionType: merchant_refund
+                      transactionTypeDisplayName: Refund to Balance
+        '500':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+              examples:
+                Internal Server Error:
+                  summary: Internal Server Error
+                  value:
+                    code: internal
+                    message: Something went wrong. Please try again later.
+                    type: api_error
+          description: Internal Server Error
+      parameters:
+      - in: path
+        name: transactionId
+        schema:
+          type: string
+        required: true
+      operationId: get_v1-transactions-transactionid-refunds
+      tags:
+      - Transactions
+  /v1/transactions:
+    get:
+      summary: List transactions
+      description: ''
+      operationId: list-transactions-1
+      parameters:
+      - name: cursor
+        in: query
+        description: A cursor returned from a previous request to fetch the next or previous page.
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: '50'
+        description: 'Number of transactions to return in a single page of results. Max: 50'
+      - in: query
+        name: transactionType
+        schema:
+          type: string
+        description: Filter by transaction type.
+      - in: query
+        name: label
+        schema:
+          type: string
+        description: Filter by transaction label.
+      - in: query
+        name: labelContains
+        schema:
+          type: string
+        description: 'Filter by transaction label with substring matching. '
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"nextCursor\": \"eyJMYXN0Q3JlYXRlZCI6IjIwMjMtMDctMjdUMjA6NDg6NTcuNzI4MzU2WiIsIkxhc3RKb3VybmFsRW50cnlJZCI6ImQ2NTlmYTFmLTdlODgtNGY0Yy1hZDM5LTcwYjgxMjljNTA2NCJ9\",\n  \"transactions\": [\n    {\n      \"amount\": 3829,\n      \"created\": \"2023-07-28T17:44:41.484Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"67a57ffc-c25c-4b28-849d-be7924ab8c7b\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"bedb14e3-d738-4dec-8ef2-1189ce078184\",\n      \"transactionId\": \"2b7885d2-972b-4d2c-9ce9-5f51ac46280d\",\n      \"transactionSource\": \"useBalance\",\n      \"transactionType\": \"use_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T17:43:20.051Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"67a57ffc-c25c-4b28-849d-be7924ab8c7b\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"2aa88ff1-3a4b-4d29-a599-011d1b33102c\",\n      \"to\": \"67a57ffc-c25c-4b28-849d-be7924ab8c7b\",\n      \"transactionId\": \"ab9faacc-a25c-4a88-9406-7928cb13b81f\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 10000,\n      \"created\": \"2023-07-28T16:58:09.301Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"270addc3-4908-4069-960b-e2e92d22986d\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"a2e7f6a5-5be8-4f1f-a836-1410a3640e86\",\n      \"to\": \"270addc3-4908-4069-960b-e2e92d22986d\",\n      \"transactionId\": \"2c732a51-26d8-47e8-bdc0-cb1102c109bc\",\n      \"transactionSource\": \"autoReload\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T02:40:33.220Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"55dcf0a6-9da9-4940-bc51-9648c72c8ac0\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"d1753638-a1be-46f7-8647-e7dc3ab62f52\",\n      \"to\": \"55dcf0a6-9da9-4940-bc51-9648c72c8ac0\",\n      \"transactionId\": \"4d82b7d2-fc16-4242-b079-03f9c0282295\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T02:39:20.016Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"103798da-8cdf-4330-81c7-c11dad9fc8cf\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"df1d54f1-9e91-4907-bb64-c021adf74768\",\n      \"to\": \"103798da-8cdf-4330-81c7-c11dad9fc8cf\",\n      \"transactionId\": \"6642f38f-16c8-467a-b906-8d48056a703d\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T02:38:01.418Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"15082e63-6ec9-4674-aaf6-08d023070530\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"fbb510d3-766f-4cf2-b1b8-dfa88dc37beb\",\n      \"to\": \"15082e63-6ec9-4674-aaf6-08d023070530\",\n      \"transactionId\": \"4fd204c5-9144-43bf-ae54-8676a97c05da\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-28T02:36:42.017Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"e0c8935f-6fba-4785-9a3e-810cf0a53145\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"b42e2b63-39e2-4039-a34c-557d3f755c82\",\n      \"to\": \"e0c8935f-6fba-4785-9a3e-810cf0a53145\",\n      \"transactionId\": \"e2854c96-92ec-42fb-9faa-aa3cd9c24a80\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 4200,\n      \"created\": \"2023-07-28T01:54:20.054Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"867f2da3-4d08-4ec3-9050-2a4ebe276d4c\",\n      \"to\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"transactionId\": \"c5ef0402-9a53-4436-aa80-36af442b7b8d\",\n      \"transactionSource\": \"autoReload\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 500,\n      \"created\": \"2023-07-28T01:54:18.967Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"bedb14e3-d738-4dec-8ef2-1189ce078184\",\n      \"transactionId\": \"54d23a0e-b9c3-41bb-b4dc-687fc07a32e9\",\n      \"transactionSource\": \"useBalance\",\n      \"transactionType\": \"use_balance\"\n    },\n    {\n      \"amount\": 1500,\n      \"created\": \"2023-07-28T01:53:15.831Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"bedb14e3-d738-4dec-8ef2-1189ce078184\",\n      \"transactionId\": \"4c95c654-6e3f-4b25-8954-be0d48da23b8\",\n      \"transactionSource\": \"useBalance\",\n      \"transactionType\": \"use_balance\"\n    },\n    {\n      \"amount\": 3000,\n      \"created\": \"2023-07-28T01:52:39.873Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"bedb14e3-d738-4dec-8ef2-1189ce078184\",\n      \"transactionId\": \"91f8e0ce-46a8-49dd-aa3a-2ef188edb2a0\",\n      \"transactionSource\": \"useBalance\",\n      \"transactionType\": \"use_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T01:49:33.871Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"867f2da3-4d08-4ec3-9050-2a4ebe276d4c\",\n      \"to\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"transactionId\": \"b5363d78-d63a-414c-bbf2-f8f77a07fc0d\",\n      \"transactionSource\": \"autoReload\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 3329,\n      \"created\": \"2023-07-28T01:49:32.494Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"bedb14e3-d738-4dec-8ef2-1189ce078184\",\n      \"transactionId\": \"7f365992-715a-4a57-8724-0aed97774b84\",\n      \"transactionSource\": \"useBalance\",\n      \"transactionType\": \"use_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-28T01:41:41.225Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"paymentMethodId\": \"867f2da3-4d08-4ec3-9050-2a4ebe276d4c\",\n      \"to\": \"89673aad-4a0d-4e21-9323-afef1511d99f\",\n      \"transactionId\": \"ec1580d8-66be-46fc-96e9-7dac18ce67a1\",\n      \"transactionSource\": \"addBalance\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T22:45:49.102Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"fbf76f84-bc43-44a9-b710-b493e5b9e110\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"fbf76f84-bc43-44a9-b710-b493e5b9e110\",\n      \"transactionId\": \"eeacef64-04f2-44cc-a158-da8d28a5d961\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:51:52.960Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"transactionId\": \"9f7d593e-fd75-40dd-95ab-eeee09521580\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:51:10.923Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"transactionId\": \"2f067b05-4478-46ff-add7-ea84738e5ed4\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:50:44.568Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"transactionId\": \"df092b5c-59fa-4a77-9d78-b2f4c2d02ed1\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:45:39.073Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"34f012aa-b663-4770-bdac-da80c5be4eaf\",\n      \"transactionId\": \"07362145-2c29-4ac2-aab8-c90c0e4e424f\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:42:02.465Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"98c3f904-9398-40aa-8524-acacac624462\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"98c3f904-9398-40aa-8524-acacac624462\",\n      \"transactionId\": \"9bc66caf-0d98-4ed7-9a8f-4d868e4b67b6\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:39:24.308Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"3aad6c32-6eaf-410d-8368-3a420e876337\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"3aad6c32-6eaf-410d-8368-3a420e876337\",\n      \"transactionId\": \"d159a8e5-edad-4806-8732-0dfc406dc002\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 2500,\n      \"created\": \"2023-07-27T21:18:31.080Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"a2b0de25-f78f-4e2f-8b78-76645d14a497\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"a2b0de25-f78f-4e2f-8b78-76645d14a497\",\n      \"transactionId\": \"4eebeedd-29e2-40d8-9fa8-be31b35ab9f6\",\n      \"transactionType\": \"add_balance\"\n    },\n    {\n      \"amount\": 5000,\n      \"created\": \"2023-07-27T20:48:57.728Z\",\n\t\t\t\"currency\": \"USD\",\n      \"from\": \"202bc10c-69e6-4fd4-9087-0ae4644b856f\",\n      \"label\": \"\",\n      \"metadata\": null,\n      \"to\": \"202bc10c-69e6-4fd4-9087-0ae4644b856f\",\n      \"transactionId\": \"d659fa1f-7e88-4f4c-ad39-70b8129c5064\",\n      \"transactionType\": \"add_balance\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  nextCursor:
+                    type: string
+                    example: eyJMYXN0Q3JlYXRlZCI6IjIwMjMtMDctMjdUMjA6NDg6NTcuNzI4MzU2WiIsIkxhc3RKb3VybmFsRW50cnlJZCI6ImQ2NTlmYTFmLTdlODgtNGY0Yy1hZDM5LTcwYjgxMjljNTA2NCJ9
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        amount:
+                          type: integer
+                          example: 3829
+                          default: 0
+                        created:
+                          type: string
+                          example: '2023-07-28T17:44:41.484Z'
+                        currency:
+                          type: string
+                          example: USD
+                        from:
+                          type: string
+                          example: 67a57ffc-c25c-4b28-849d-be7924ab8c7b
+                        label:
+                          type: string
+                          example: ''
+                        metadata: {}
+                        to:
+                          type: string
+                          example: bedb14e3-d738-4dec-8ef2-1189ce078184
+                        transactionId:
+                          type: string
+                          example: 2b7885d2-972b-4d2c-9ce9-5f51ac46280d
+                        transactionSource:
+                          type: string
+                          example: useBalance
+                        transactionType:
+                          type: string
+                          example: use_balance
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Transactions
+  /v1/transactions/{transactionId}/metadata:
+    put:
+      summary: Update transaction metadata
+      description: ''
+      operationId: update-transaction-metadata
+      parameters:
+      - name: transactionId
+        in: path
+        description: The id of the transaction
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: A string identifier that can be attached to this transaction id.
+                metadata:
+                  type: object
+                  description: Set of `string` key-value pairs that you can attach to a transaction. This value will completely overwrite existing metadata.
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"amount\": 500,\n  \"created\": \"2023-08-07T22:23:35.107Z\",\n  \"from\": \"76db3d73-c8ae-45f9-b04f-5383e4eae90e\",\n  \"label\": \"my-new-transaction-label\",\n  \"metadata\": {\n    \"sampleKey\": \"anUpdatedMetadataValue\",\n    \"storeLocationId\": \"location-123abc\",\n    \"storeLocationName\": \"name-123abc\"\n  },\n  \"to\": \"bcb745a4-10c4-40a1-8911-8730d233b134\",\n  \"transactionId\": \"b9d996ee-242a-4a6f-9a34-8b725c882663\",\n  \"transactionSource\": \"useBalance\",\n  \"transactionType\": \"use_balance\"\n}"
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    example: 500
+                    default: 0
+                  created:
+                    type: string
+                    example: '2023-08-07T22:23:35.107Z'
+                  from:
+                    type: string
+                    example: 76db3d73-c8ae-45f9-b04f-5383e4eae90e
+                  label:
+                    type: string
+                    example: my-new-transaction-label
+                  metadata:
+                    type: object
+                    properties:
+                      sampleKey:
+                        type: string
+                        example: anUpdatedMetadataValue
+                      storeLocationId:
+                        type: string
+                        example: location-123abc
+                      storeLocationName:
+                        type: string
+                        example: name-123abc
+                  to:
+                    type: string
+                    example: bcb745a4-10c4-40a1-8911-8730d233b134
+                  transactionId:
+                    type: string
+                    example: b9d996ee-242a-4a6f-9a34-8b725c882663
+                  transactionSource:
+                    type: string
+                    example: useBalance
+                  transactionType:
+                    type: string
+                    example: use_balance
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Transactions
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

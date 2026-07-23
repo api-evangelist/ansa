@@ -1,0 +1,56 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/introduction
+docs:
+  - https://docs.ansa.dev/reference/introduction
+  - https://docs.ansa.dev/reference/authentication
+  - https://docs.ansa.dev/reference/idempotency
+  - https://docs.ansa.dev/reference/errors
+authentication:
+  style: api-key
+  location: header
+  header: Authorization
+  scheme: raw-key
+  notes: >-
+    API key passed directly in the Authorization header (no Bearer prefix).
+    Keys are role-scoped (merchant secret / client secret / publishable) and
+    environment-specific with prefixes ansa_sk_live_, ansa_sk_sandbox_,
+    ansa_cs_live_, ansa_cs_sandbox_. Client secrets are short-lived credentials
+    minted from a payment session for client-side use.
+  ref: authentication/ansa-authentication.yml
+idempotency:
+  supported: true
+  header: Ansa-Idempotency-Key
+  scope: state-changing operations (POST financial transactions)
+  applies_to: All endpoints accept the header; it only takes effect on state-changing POST operations.
+  conflict_behavior: A retry with a reused idempotency key that conflicts returns HTTP 409 Conflict.
+  override: Idempotency key can also be overridden as a request parameter in most calls; client SDKs manage it via the payment session.
+  notes: GET and read-only endpoints ignore the header.
+pagination:
+  style: cursor
+  params:
+    cursor: cursor
+    limit: limit
+  notes: List endpoints (e.g. list customer transactions) accept a cursor for the next page and a limit for page size.
+versioning:
+  scheme: uri-path
+  current: v1
+  path_prefix: /v1
+  notes: Version carried in the URL path (/v1/...).
+metadata:
+  supported: true
+  notes: Transactions support metadata; see update-transaction-metadata (PUT /v1/transactions/{transactionId}/metadata).
+error_envelope:
+  shape: json-object
+  fields: [type, code, message, declineCode, deficit]
+  ref: errors/ansa-problem-types.yml
+  decline_ref: errors/ansa-decline-codes.yml
+rate_limiting:
+  signaled: true
+  status: 429
+  guidance: Exponential backoff recommended on HTTP 429 Too Many Requests.
+data_formats:
+  request: application/json
+  response: application/json
+  timestamps: RFC 3339 (e.g. 2022-09-16T19:28:23.120Z)
+  https_required: true

@@ -1,0 +1,19 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/introduction
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.ansa.dev/reference/introduction
+deprecation:
+  policy_url: null
+  sunset_header: null
+  notes: No public deprecation policy or RFC 8594 Sunset/Deprecation header support was found.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.getansa.com/
+support:
+  email: support@getansa.com
+  portal: https://portal.getansa.com
+deprecated_operations: []

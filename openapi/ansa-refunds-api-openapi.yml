@@ -1,0 +1,314 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Refunds API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Refunds
+paths:
+  /v1/refunds/{refundId}:
+    get:
+      summary: Get refund
+      description: ''
+      operationId: get-refund
+      parameters:
+      - name: refundId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"id\": \"db412735-7c1d-438d-9b66-18f89c028af1\",\n\t\"refundedTransactionId\": \"d6ab7103-4128-4b38-8686-28875afc40c4\",\n\t\"customerId\": \"11f7d38b-162f-4802-9b71-e96f59a8411d\",\n\t\"type\": \"payment_method\",\n\t\"amount\": 150, \n\t\"currency\": \"USD\",\n\t\"reason\": \"refund requested by a customer\",\n\t\"status\": \"succeeded\",\n\t\"metadata\": {\"key\": \"value\"},\n\t\"created\": \"2022-12-09T00:30:40.840Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: db412735-7c1d-438d-9b66-18f89c028af1
+                  refundedTransactionId:
+                    type: string
+                    example: d6ab7103-4128-4b38-8686-28875afc40c4
+                  customerId:
+                    type: string
+                    example: 11f7d38b-162f-4802-9b71-e96f59a8411d
+                  type:
+                    type: string
+                    example: payment_method
+                  amount:
+                    type: integer
+                    example: 150
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  reason:
+                    type: string
+                    example: refund requested by a customer
+                  status:
+                    type: string
+                    example: succeeded
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                  created:
+                    type: string
+                    example: '2022-12-09T00:30:40.840Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Refunds
+  /v1/refunds/balance:
+    post:
+      summary: Refund to balance
+      description: ''
+      operationId: refund-to-balance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - transactionIdToRefund
+              properties:
+                transactionIdToRefund:
+                  type: string
+                  description: The id of the use balance transaction to be refunded.
+                amount:
+                  type: integer
+                  description: The amount to refund into the customer's balance. Partial refunds are supported. If this value is not set, the full remaining amount of the target transaction will be refunded.
+                  format: int64
+                reason:
+                  type: string
+                  description: Optional descriptor for the refund.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created refund.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"id\": \"db412735-7c1d-438d-9b66-18f89c028af1\",\n\t\"transactionId\": \"db412735-7c1d-438d-9b66-18f89c028af1\",\n  \"refundedTransactionId\": \"d6ab7103-4128-4b38-8686-28875afc40c4\",\n\t\"customerId\": \"11f7d38b-162f-4802-9b71-e96f59a8411d\",\n\t\"type\": \"balance\",\n\t\"amount\": 150, \n\t\"currency\": \"USD\",\n\t\"reason\": \"refund requested by a customer\",\n\t\"status\": \"succeeded\",\n\t\"metadata\": {\"key\": \"value\"},\n\t\"created\": \"2022-12-09T00:30:40.840Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: db412735-7c1d-438d-9b66-18f89c028af1
+                  transactionId:
+                    type: string
+                    example: db412735-7c1d-438d-9b66-18f89c028af1
+                  refundedTransactionId:
+                    type: string
+                    example: d6ab7103-4128-4b38-8686-28875afc40c4
+                  customerId:
+                    type: string
+                    example: 11f7d38b-162f-4802-9b71-e96f59a8411d
+                  type:
+                    type: string
+                    example: balance
+                  amount:
+                    type: integer
+                    example: 150
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  reason:
+                    type: string
+                    example: refund requested by a customer
+                  status:
+                    type: string
+                    example: succeeded
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                  created:
+                    type: string
+                    example: '2022-12-09T00:30:40.840Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Refunds
+  /v1/refunds/payment-method:
+    post:
+      summary: Refund to payment method
+      description: ''
+      operationId: refund-to-payment-method
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - transactionIdToRefund
+              properties:
+                transactionIdToRefund:
+                  type: string
+                  description: The id of the add balance transaction to be refunded.
+                amount:
+                  type: integer
+                  description: The amount to refund to the customer's payment method. If this value is not set, the full amount will be refunded.
+                  format: int64
+                reason:
+                  type: string
+                  description: Optional descriptor for the refund.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created refund.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"id\": \"db412735-7c1d-438d-9b66-18f89c028af1\",\n\t\"transactionId\": \"db412735-7c1d-438d-9b66-18f89c028af1\",\n  \"refundedTransactionId\": \"d6ab7103-4128-4b38-8686-28875afc40c4\",\n\t\"customerId\": \"11f7d38b-162f-4802-9b71-e96f59a8411d\",\n\t\"type\": \"payment_method\",\n\t\"amount\": 150, \n\t\"currency\": \"USD\",\n\t\"reason\": \"refund requested by a customer\",\n\t\"status\": \"succeeded\",\n\t\"metadata\": {\"key\": \"value\"},\n\t\"created\": \"2022-12-09T00:30:40.840Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: db412735-7c1d-438d-9b66-18f89c028af1
+                  transactionId:
+                    type: string
+                    example: db412735-7c1d-438d-9b66-18f89c028af1
+                  refundedTransactionId:
+                    type: string
+                    example: d6ab7103-4128-4b38-8686-28875afc40c4
+                  customerId:
+                    type: string
+                    example: 11f7d38b-162f-4802-9b71-e96f59a8411d
+                  type:
+                    type: string
+                    example: payment_method
+                  amount:
+                    type: integer
+                    example: 150
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  reason:
+                    type: string
+                    example: refund requested by a customer
+                  status:
+                    type: string
+                    example: succeeded
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                  created:
+                    type: string
+                    example: '2022-12-09T00:30:40.840Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Refunds
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

@@ -1,0 +1,181 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Add Incentive
+paths:
+  /v1/{customerId}/add-incentive:
+    post:
+      summary: Copy of Fund customer balance
+      description: ''
+      operationId: post_v1fund-customer-balance-1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  description: Amount to add to the customer's balance.
+                  format: int32
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                reason:
+                  type: string
+                  description: Optional descriptor for the transaction.
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+                expirationMetadata:
+                  type: object
+                  description: Object that represents when funds will expire from customer's balance
+                  properties:
+                    expirationType:
+                      type: string
+                      default: ''
+                      enum:
+                      - x_days_after_redeeming
+                    numDays:
+                      type: integer
+                      format: int32
+                    fixedDate:
+                      type: string
+                      description: Fixed date of expiration, in RFC 3339 format
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"transactionId\": \"5d92253c-24ea-4680-936b-7c3db183877d\",\n    \"customerId\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n    \"currentBalance\": {\n        \"amount\": 850,\n        \"currency\": \"USD\"\n    },\n    \"additionalInfo\": null,\n    \"label\": \"\",\n    \"metadata\": null,\n    \"timestamp\": \"2025-05-02T20:48:44.673Z\",\n    \"expirationInfo\": {\n      \"expirationType\": \"x_days_after_redeeming\",       \n\t\t  \"numDays\": 6,\n      \"expiresAt\": \"2025-08-04T22:30:30.404Z\"\n    },\n    \"promoInfo\": {\n        \"promoCodeId\": null,\n        \"promotionType\": \"fund_balance\",\n        \"userReferralId\": null\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    example: 5d92253c-24ea-4680-936b-7c3db183877d
+                  customerId:
+                    type: string
+                    example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                  currentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 850
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  additionalInfo: {}
+                  label:
+                    type: string
+                    example: ''
+                  metadata: {}
+                  timestamp:
+                    type: string
+                    example: '2025-05-02T20:48:44.673Z'
+                  expirationInfo:
+                    type: object
+                    properties:
+                      expirationType:
+                        type: string
+                        example: x_days_after_redeeming
+                      numDays:
+                        type: integer
+                        example: 6
+                        default: 0
+                      expiresAt:
+                        type: string
+                        example: '2025-08-04T22:30:30.404Z'
+                  promoInfo:
+                    type: object
+                    properties:
+                      promoCodeId: {}
+                      promotionType:
+                        type: string
+                        example: fund_balance
+                      userReferralId: {}
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_parameter\",\n    \"message\": \"The provided parameter [amount] is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_parameter
+                  message:
+                    type: string
+                    example: The provided parameter [amount] is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Server Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}\n"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      parameters:
+      - in: path
+        name: customerId
+        schema:
+          type: string
+        required: true
+      tags:
+      - Add Incentive
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

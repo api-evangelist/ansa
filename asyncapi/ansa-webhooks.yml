@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/docs/webhooks
+spec_type: Webhooks
+delivery:
+  provider: Svix
+  configuration: https://portal.getansa.com/home/settings/developer/webhooks
+  retention: Webhook messages are stored for a maximum of 60 days, then deleted.
+  success_criteria: A 2XX (200-299) HTTP status acknowledges successful processing.
+  event_catalog: https://www.svix.com/event-types/us/org_2UAWHWWd8eIQadtHoL59HKpSvK5/
+signature:
+  docs: https://docs.ansa.dev/docs/signature-verification
+  requirement: Verify the signature and timestamp when processing webhook requests.
+  provider: Svix-style signing (via Svix delivery).
+retries:
+  docs: https://docs.ansa.dev/docs/retries-and-failure-recovery
+envelope:
+  fields:
+    id: Event id (UUID)
+    type: Event name (e.g. autoreload.success)
+    version: Payload version (e.g. "v2")
+    customer_id: Customer UUID
+    merchant_id: Merchant UUID
+    data: Object containing event-specific details
+    error: "Object with code, message, type fields (on failure events)"
+events:
+  - type: autoreload.success
+    description: Emitted when an auto-reload of a customer's wallet succeeds.
+notes: >-
+  Ansa documents webhooks delivered via Svix with signature + timestamp
+  verification and retry/failure recovery. The full event-type catalog is
+  hosted on Svix; only autoreload.success is named verbatim in the public docs,
+  so only it is recorded here (no fabricated event names).

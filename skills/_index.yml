@@ -1,0 +1,20 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/ansa-openapi-original.yml
+skills:
+  - file: ansa-onboard-and-fund-wallet.md
+    name: Onboard a customer and fund their wallet
+    api: openapi/ansa-openapi-original.yml
+    operations: [create-customer, create-payment-method, add-balance, fund-customer-wallet, get-customer]
+  - file: ansa-accept-payment.md
+    name: Accept a wallet payment
+    api: openapi/ansa-openapi-original.yml
+    operations: [initialize-payment-session, use-balance, list-transactions]
+  - file: ansa-refund-transaction.md
+    name: Refund a transaction
+    api: openapi/ansa-openapi-original.yml
+    operations: [get_v1-transactions-transactionid-refunds, refund-to-balance, refund-to-payment-method, get-refund]
+  - file: ansa-run-incentive-campaign.md
+    name: Run an incentive campaign
+    api: openapi/ansa-openapi-original.yml
+    operations: [create-incentive, post_v1fund-customer-balance-1, redeem-promo, redeem-gift-card]

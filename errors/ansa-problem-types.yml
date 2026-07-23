@@ -1,0 +1,93 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/errors
+format: custom-json
+envelope:
+  location: response body error object
+  fields:
+    type: Error category (enum below)
+    code: Short enum string identifying the specific error
+    message: Human-readable message
+    declineCode: For card/PSP declines, the decline reason (see decline-codes)
+    deficit: "{ amount, currency } present on insufficient_funds errors"
+error_types:
+  - type: api_error
+    meaning: Catch-all; any other problem including transient Ansa issues.
+  - type: payment_method_error
+    meaning: Error derived from processing the payment method.
+  - type: insufficient_funds
+    meaning: Customer attempted to spend more funds than were available.
+  - type: risk_error
+    meaning: Associated with a high-risk / fraud profile.
+  - type: invalid_request_error
+    meaning: Invalid parameters or arguments.
+http_statuses:
+  - status: 200
+    title: OK
+  - status: 201
+    title: Created
+  - status: 204
+    title: No Content
+  - status: 400
+    title: Bad Request
+    remediation: Fix missing/invalid parameters or request body.
+  - status: 401
+    title: Unauthorized
+    remediation: Provide a valid API key in the Authorization header.
+  - status: 402
+    title: Payment Failed
+    remediation: Parameters valid but the request failed (e.g. add-balance). Inspect error.code / declineCode.
+  - status: 403
+    title: Forbidden
+    remediation: API key lacks permission for this operation (check merchant vs client scope).
+  - status: 409
+    title: Conflict
+    remediation: Often a reused idempotency key; use a fresh Ansa-Idempotency-Key or reconcile the prior result.
+  - status: 429
+    title: Too Many Requests
+    remediation: Apply exponential backoff.
+  - status: 500
+    title: Ansa Internal Error
+  - status: 502
+    title: Ansa Internal Error
+  - status: 503
+    title: Ansa Internal Error
+  - status: 504
+    title: Ansa Internal Error
+error_codes:
+  - code: request_failed
+    description: Request failed with valid parameters; may indicate a PSP decline.
+  - code: internal
+    description: Ansa internal error.
+  - code: invalid_customer_id
+    description: Invalid id or no such customer exists.
+  - code: invalid_merchant_id
+    description: Invalid id or no such merchant exists.
+  - code: duplicate_merchant
+    description: Conflict due to an existing merchant.
+  - code: invalid_merchant_name
+    description: Invalid merchant name.
+  - code: missing_parameter
+    description: Required parameter is missing.
+  - code: unsupported_payment_method
+    description: The provided payment method is not supported.
+  - code: invalid_parameter
+    description: The provided parameter is invalid.
+  - code: invalid_body
+    description: The provided request body is invalid.
+  - code: invalid_email
+    description: Invalid email.
+  - code: invalid_phone
+    description: Invalid phone number.
+  - code: invalid_payment_method_token
+    description: Invalid payment method token.
+  - code: invalid_amount
+    description: Invalid transaction amount.
+  - code: invalid_currency_code
+    description: Invalid currency code.
+  - code: insufficient_funds
+    description: Attempted to spend more funds than were available.
+  - code: high_risk
+    description: Transaction rejected due to a high-risk profile.
+  - code: unsupported_functionality
+    description: Requested functionality is not supported.

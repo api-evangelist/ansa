@@ -1,0 +1,42 @@
+generated: '2026-07-17'
+method: searched
+source: https://getansa.github.io/ansa-mobile-sdks/
+notes: >-
+  Ansa publishes first-party mobile client SDKs (AnsaCore = bundled APIs,
+  AnsaUI = prebuilt wallet UI) for iOS, Android and React Native, distributed
+  from the GetAnsa GitHub organization. No server-side SDKs (npm/PyPI/Maven
+  server libraries) were found published in public registries as of this pass.
+packages:
+  - language: swift
+    platform: ios
+    registry: github
+    name: ansa-core-ios
+    url: https://github.com/GetAnsa/ansa-core-ios
+    releases: https://github.com/GetAnsa/ansa-core-ios-releases
+    install: Swift Package Manager (add the ansa-core-ios package URL)
+    docs: https://getansa.github.io/ansa-mobile-sdks/AnsaCore/setup_ios/
+    official: true
+  - language: swift
+    platform: ios
+    registry: github
+    name: ansa-ui-ios
+    url: https://github.com/GetAnsa/ansa-ui-ios
+    install: Swift Package Manager (add the ansa-ui-ios package URL)
+    docs: https://getansa.github.io/ansa-mobile-sdks/
+    official: true
+  - language: kotlin
+    platform: android
+    registry: github
+    name: ansa-core-android
+    url: https://github.com/GetAnsa/ansa-core-android-releases
+    install: Gradle dependency from the ansa-core-android-releases repository
+    docs: https://getansa.github.io/ansa-mobile-sdks/AnsaCore/setup_android/
+    official: true
+  - language: javascript
+    platform: react-native
+    registry: docs
+    name: ansa-react-native
+    url: https://docs.ansa.dev/docs/react-native-quick-start
+    install: See React Native SDK quick start guide
+    docs: https://getansa.github.io/ansa-mobile-sdks/AnsaCore/setup_react_native/
+    official: true

@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/introduction
+standards:
+  - id: rest
+    conforms: true
+    evidence: RESTful conventions with GET/POST/PUT/DELETE over JSON (docs Introduction).
+  - id: json
+    conforms: true
+    evidence: Request and response bodies encoded as JSON.
+  - id: rfc3339-timestamps
+    conforms: true
+    evidence: Temporal values encoded in RFC 3339 format.
+  - id: idempotency
+    conforms: true
+    evidence: Ansa-Idempotency-Key header on state-changing operations; 409 on conflict.
+  - id: cursor-pagination
+    conforms: true
+    evidence: List endpoints use cursor + limit query parameters.
+  - id: apikey-auth
+    conforms: true
+    evidence: OpenAPI securityScheme type apiKey in Authorization header.
+  - id: oauth2
+    conforms: false
+    evidence: No OAuth2/OIDC scheme; API-key auth only.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Custom JSON error object (type/code/message/declineCode), not application/problem+json.
+  - id: pci-dss
+    conforms: true
+    evidence: >-
+      Payments/stored-value platform processing card data; SOC 2 attested per
+      trust center (trust.ansa.dev). PCI handling via tokenization and PSP.
+    caveat: Derived compliance posture; confirm scope with Ansa.
+  - id: soc2
+    conforms: true
+    evidence: SOC 2 listed on trust.ansa.dev (see security/ansa-trust-center.yml).

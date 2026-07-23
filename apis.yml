@@ -1,27 +1,233 @@
 aid: ansa
 name: Ansa
-description: 'Ansa is a company surfaced as a portfolio company of bain-capital-ventures and added to
-  the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: >-
+  Ansa is a stored-value platform that lets businesses launch branded digital
+  wallets — closed-loop balances, incentives, and loyalty — to turn payments
+  into a revenue and retention driver. Its REST API and mobile SDKs (AnsaCore
+  and AnsaUI for iOS, Android, and React Native) cover customers, payment
+  methods, wallet funding, transactions, refunds, customer segments, incentive
+  campaigns, promotional accounts, virtual cards, settlements, and webhooks.
+  Authentication is via environment-scoped API keys with idempotency and
+  cursor pagination. Ansa is backed by Bain Capital Ventures and targets
+  marketplaces, platform businesses, and quick-service restaurants.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://cdn.prod.website-files.com/64de31babb6dd82d228e90ab/66281fc1b9e68f64aa95a0e3_meta_image_ansa_home.png
 url: https://raw.githubusercontent.com/api-evangelist/ansa/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bain-capital-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: pipeline-enriched
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
 tags:
 - Company
 - Fintech
-apis: []
+- Payments
+- Stored Value
+- Digital Wallet
+- Loyalty
+- Incentives
+- API
+apis:
+- aid: ansa:ansa-add-incentive-api
+  name: Ansa Add Incentive API
+  description: The Add Incentive API from Ansa — 1 operation(s) for add incentive.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Add Incentive
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-add-incentive-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-customer-segments-api
+  name: Ansa Customer Segments API
+  description: The Customer Segments API from Ansa — 3 operation(s) for customer segments.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Customer Segments
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-customer-segments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-customers-api
+  name: Ansa Customers API
+  description: The Customers API from Ansa — 19 operation(s) for customers.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-initialize-payment-session-api
+  name: Ansa Initialize Payment Session API
+  description: >-
+    The Initialize Payment Session API from Ansa — 1 operation(s) for initialize payment session.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Initialize Payment Session
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-initialize-payment-session-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-merchants-api
+  name: Ansa Merchants API
+  description: The Merchants API from Ansa — 10 operation(s) for merchants.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Merchants
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-merchants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-refunds-api
+  name: Ansa Refunds API
+  description: The Refunds API from Ansa — 3 operation(s) for refunds.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Refunds
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-refunds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
+- aid: ansa:ansa-transactions-api
+  name: Ansa Transactions API
+  description: The Transactions API from Ansa — 3 operation(s) for transactions.
+  humanURL: https://docs.ansa.dev/reference
+  baseURL: https://api.getansa.com
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/ansa-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ansa.dev/docs
+  - type: APIReference
+    url: https://docs.ansa.dev/reference
+  - type: GettingStarted
+    url: https://docs.ansa.dev/docs/get-started-with-ansa
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://docs.ansa.dev/
+- type: Documentation
+  url: https://docs.ansa.dev/docs
+- type: APIReference
+  url: https://docs.ansa.dev/reference
+- type: GettingStarted
+  url: https://docs.ansa.dev/docs/get-started-with-ansa
+- type: Blog
+  url: https://www.ansa.dev/blog
+- type: Support
+  url: mailto:support@getansa.com
+- type: GitHubOrganization
+  url: https://github.com/GetAnsa
+- type: Login
+  url: https://portal.getansa.com
+- type: TermsOfService
+  url: https://www.ansa.dev/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.ansa.dev/privacy-policy
+- type: StatusPage
+  url: https://status.getansa.com/
+- type: Authentication
+  url: authentication/ansa-authentication.yml
+- type: Conventions
+  url: conventions/ansa-conventions.yml
+- type: Idempotency
+  url: conventions/ansa-conventions.yml
+- type: ErrorCatalog
+  url: errors/ansa-problem-types.yml
+- type: DeclineCodes
+  url: errors/ansa-decline-codes.yml
+- type: Sandbox
+  url: sandbox/ansa-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/ansa-lifecycle.yml
+- type: Packages
+  url: packages/ansa-packages.yml
+- type: SDKs
+  url: packages/ansa-packages.yml
+- type: MCPServer
+  url: mcp/ansa-mcp.yml
+- type: LLMsTxt
+  url: llms/ansa-llms.txt
+- type: Overlay
+  url: overlays/ansa-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/ansa-conformance.yml
+- type: Compliance
+  url: security/ansa-trust-center.yml
+- type: Webhooks
+  url: asyncapi/ansa-webhooks.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/ansa-data-model.yml
+- type: AgenticAccess
+  url: agentic-access/ansa-agentic-access.yml
+- type: TrustCenter
+  url: security/ansa-trust-center.yml
+- type: DomainSecurity
+  url: security/ansa-domain-security.yml
 - type: Website
   url: https://www.ansa.dev/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

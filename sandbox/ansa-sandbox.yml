@@ -1,0 +1,33 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.ansa.dev/reference/testing
+environments:
+  - name: sandbox
+    base_url: https://api-sandbox.getansa.com
+    description: >-
+      Full access to all Ansa APIs without connection to external financial
+      systems. No movement of real funds. Uses test payment tokens and cards.
+  - name: live
+    base_url: https://api.getansa.com
+    description: Production; connects to external financial systems and moves real funds.
+key_prefixes:
+  merchant_secret_live: ansa_sk_live_
+  merchant_secret_sandbox: ansa_sk_sandbox_
+  client_secret_live: ansa_cs_live_
+  client_secret_sandbox: ansa_cs_sandbox_
+  publishable: single static publishable key per environment
+onboarding:
+  notes: >-
+    Sandbox merchants are provisioned by Ansa on request via support@getansa.com;
+    keys are generated in the Ansa Portal under Settings -> API Keys and can be
+    viewed only once after generation.
+  portal: https://portal.getansa.com
+test_cards:
+  notes: >-
+    The sandbox accepts test payment cards provided by the configured Payment
+    Service Provider's sandbox environment to simulate payment flows. Real card
+    details are rejected in sandbox. Ansa does not publish a fixed test-card
+    table in its public docs; the specific test PANs come from the underlying
+    PSP sandbox. No verbatim test card numbers are published, so none are
+    recorded here (no fabrication).
+supported: true

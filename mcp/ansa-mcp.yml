@@ -1,0 +1,170 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/ansa-openapi-original.yml
+note: No official hosted/remote Ansa MCP server was found. Candidate tool list derived one-per-operation
+  from the reconstructed OpenAPI.
+server:
+  name: ansa
+  transport: http
+  url: null
+tools:
+- name: add_balance
+  description: Add balance
+  source_operation: openapi/ansa-openapi-original.yml#add-balance
+- name: add_customers_to_segment
+  description: Add customers to a segment
+  source_operation: openapi/ansa-openapi-original.yml#add-customers-to-segment
+- name: remove_user_from_segment
+  description: Remove customers from segment
+  source_operation: openapi/ansa-openapi-original.yml#remove-user-from-segment
+- name: post_v1fund_customer_balance_1
+  description: Copy of Fund customer balance
+  source_operation: openapi/ansa-openapi-original.yml#post_v1fund-customer-balance-1
+- name: calculate_settlement
+  description: Calculate settlement
+  source_operation: openapi/ansa-openapi-original.yml#calculate-settlement
+- name: claim_user_referral
+  description: Claim customer referral
+  source_operation: openapi/ansa-openapi-original.yml#claim-user-referral
+- name: get_user_referrals
+  description: Get customer referrals
+  source_operation: openapi/ansa-openapi-original.yml#get-user-referrals
+- name: configure_auto_reload
+  description: Set auto reload configuration
+  source_operation: openapi/ansa-openapi-original.yml#configure-auto-reload
+- name: get_auto_reload_configuration
+  description: Get auto reload configuration
+  source_operation: openapi/ansa-openapi-original.yml#get-auto-reload-configuration
+- name: create_customer_segment
+  description: Create segment
+  source_operation: openapi/ansa-openapi-original.yml#create-customer-segment
+- name: list_segments
+  description: List segments
+  source_operation: openapi/ansa-openapi-original.yml#list-segments
+- name: create_customer
+  description: Create customer
+  source_operation: openapi/ansa-openapi-original.yml#create-customer
+- name: create_incentive
+  description: Create campaign
+  source_operation: openapi/ansa-openapi-original.yml#create-incentive
+- name: list_incentive_campaigns
+  description: List campaigns
+  source_operation: openapi/ansa-openapi-original.yml#list-incentive-campaigns
+- name: create_payment_method
+  description: Create payment method from token
+  source_operation: openapi/ansa-openapi-original.yml#create-payment-method
+- name: list_payment_methods
+  description: List payment methods
+  source_operation: openapi/ansa-openapi-original.yml#list-payment-methods
+- name: create_promotional_account
+  description: Create promotional account
+  source_operation: openapi/ansa-openapi-original.yml#create-promotional-account
+- name: get_promotional_accounts
+  description: List promotional accounts
+  source_operation: openapi/ansa-openapi-original.yml#get-promotional-accounts
+- name: create_virtual_card
+  description: Create virtual card
+  source_operation: openapi/ansa-openapi-original.yml#create-virtual-card
+- name: edit_virtual_card
+  description: Update virtual card
+  source_operation: openapi/ansa-openapi-original.yml#edit-virtual-card
+- name: get_virtual_card
+  description: Get virtual card
+  source_operation: openapi/ansa-openapi-original.yml#get-virtual-card
+- name: deactivate_customer
+  description: Deactivate customer
+  source_operation: openapi/ansa-openapi-original.yml#deactivate-customer
+- name: delete_customer_segments
+  description: Delete segment
+  source_operation: openapi/ansa-openapi-original.yml#delete-customer-segments
+- name: list_customers_in_segment
+  description: List segment customers
+  source_operation: openapi/ansa-openapi-original.yml#list-customers-in-segment
+- name: update_segment
+  description: Update segment
+  source_operation: openapi/ansa-openapi-original.yml#update-segment
+- name: delete_payment_method
+  description: Delete payment method
+  source_operation: openapi/ansa-openapi-original.yml#delete-payment-method
+- name: fund_customer_wallet
+  description: Fund customer wallet
+  source_operation: openapi/ansa-openapi-original.yml#fund-customer-wallet
+- name: fund_promotional_account
+  description: Fund promotional account
+  source_operation: openapi/ansa-openapi-original.yml#fund-promotional-account
+- name: fund_wallet_hold_account
+  description: Fund wallet funding hold account
+  source_operation: openapi/ansa-openapi-original.yml#fund-wallet-hold-account
+- name: get_campaign
+  description: Get campaign
+  source_operation: openapi/ansa-openapi-original.yml#get-campaign
+- name: get_customer_reload_promo
+  description: Get customer reload promotion
+  source_operation: openapi/ansa-openapi-original.yml#get-customer-reload-promo
+- name: get_customer
+  description: Get customer
+  source_operation: openapi/ansa-openapi-original.yml#get-customer
+- name: update_customer
+  description: Update customer
+  source_operation: openapi/ansa-openapi-original.yml#update-customer
+- name: get_merchant_balance
+  description: Get merchant balance
+  source_operation: openapi/ansa-openapi-original.yml#get-merchant-balance
+- name: get_merchant
+  description: Get merchant
+  source_operation: openapi/ansa-openapi-original.yml#get-merchant
+- name: get_promotional_account
+  description: Get promotional account
+  source_operation: openapi/ansa-openapi-original.yml#get-promotional-account
+- name: update_promotional_account
+  description: Update promotional account
+  source_operation: openapi/ansa-openapi-original.yml#update-promotional-account
+- name: get_refund
+  description: Get refund
+  source_operation: openapi/ansa-openapi-original.yml#get-refund
+- name: get_v1_transactions_transactionid_refunds
+  description: get_v1-transactions-transactionid-refunds
+  source_operation: openapi/ansa-openapi-original.yml#get_v1-transactions-transactionid-refunds
+- name: initialize_payment_session
+  description: Initialize payment session
+  source_operation: openapi/ansa-openapi-original.yml#initialize-payment-session
+- name: list_customer_segment_membership
+  description: List customer segment membership
+  source_operation: openapi/ansa-openapi-original.yml#list-customer-segment-membership
+- name: list_transactions_1
+  description: List transactions
+  source_operation: openapi/ansa-openapi-original.yml#list-transactions-1
+- name: list_transactions
+  description: List customer transactions
+  source_operation: openapi/ansa-openapi-original.yml#list-transactions
+- name: peer_fund
+  description: Peer fund
+  source_operation: openapi/ansa-openapi-original.yml#peer-fund
+- name: push_provision_virtual_card
+  description: Push provision virtual card
+  source_operation: openapi/ansa-openapi-original.yml#push-provision-virtual-card
+- name: redeem_gift_card
+  description: Redeem gift card
+  source_operation: openapi/ansa-openapi-original.yml#redeem-gift-card
+- name: redeem_promo
+  description: Redeem promo code
+  source_operation: openapi/ansa-openapi-original.yml#redeem-promo
+- name: refund_to_balance
+  description: Refund to balance
+  source_operation: openapi/ansa-openapi-original.yml#refund-to-balance
+- name: refund_to_payment_method
+  description: Refund to payment method
+  source_operation: openapi/ansa-openapi-original.yml#refund-to-payment-method
+- name: request_settlement
+  description: Request settlement
+  source_operation: openapi/ansa-openapi-original.yml#request-settlement
+- name: update_payment_method
+  description: Update payment method
+  source_operation: openapi/ansa-openapi-original.yml#update-payment-method
+- name: update_transaction_metadata
+  description: Update transaction metadata
+  source_operation: openapi/ansa-openapi-original.yml#update-transaction-metadata
+- name: use_balance
+  description: Use balance
+  source_operation: openapi/ansa-openapi-original.yml#use-balance

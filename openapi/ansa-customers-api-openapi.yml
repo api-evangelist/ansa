@@ -1,0 +1,2635 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Customers API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Customers
+paths:
+  /v1/customers/{customerId}/add-balance:
+    post:
+      summary: Add balance
+      description: ''
+      operationId: add-balance
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              - paymentMethodId
+              properties:
+                amount:
+                  type: integer
+                  description: The amount to charge the customer's payment method and add to their wallet.
+                  format: int64
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                paymentMethodId:
+                  type: string
+                  description: Payment method id to be charged.
+                disablePromotion:
+                  type: boolean
+                  description: Flag to disable any automated promotions for this transaction, such as reload bonuses.
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"additionalInfo\": null,\n    \"label\": \"\",\n    \"metadata\": {},\n    \"timestamp\": \"2025-05-02T21:17:29.506Z\",\n    \"transactionId\": \"2c911401-4faa-4903-9248-0ec79a624c9f\",\n    \"currentBalance\": {\n        \"amount\": 3350,\n        \"currency\": \"USD\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  additionalInfo: {}
+                  label:
+                    type: string
+                    example: ''
+                  metadata:
+                    type: object
+                    properties: {}
+                  timestamp:
+                    type: string
+                    example: '2025-05-02T21:17:29.506Z'
+                  transactionId:
+                    type: string
+                    example: 2c911401-4faa-4903-9248-0ec79a624c9f
+                  currentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 3350
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+        '402':
+          description: '402'
+          content:
+            application/json:
+              examples:
+                Payment Failure:
+                  value: "{\n  \"code\": \"request_failed\",\n  \"declineCode\": \"generic_decline\",\n  \"message\": \"There was an error processing your payment method\",\n  \"type\": \"payment_method_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: request_failed
+                  declineCode:
+                    type: string
+                    example: generic_decline
+                  message:
+                    type: string
+                    example: There was an error processing your payment method
+                  type:
+                    type: string
+                    example: payment_method_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/referrals:
+    post:
+      summary: Claim customer referral
+      description: ''
+      operationId: claim-user-referral
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - referralCode
+              properties:
+                referralCode:
+                  type: string
+                  description: The sender’s referral code.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"created\": \"2023-11-30T22:10:49.928-08:00\",\n  \"id\": \"ddaa42cd-5222-4e8e-b99e-20a41d9d36e2\",\n  \"recipientCreditAmount\": 500,\n  \"recipientId\": \"7b233c5e-98a9-409f-8dab-06b20e0115ac\",\n  \"redemptionEvent\": \"create_user\",\n  \"redemptionThresholdAmount\": 0,\n  \"senderCreditAmount\": 250,\n  \"senderId\": \"fd84617f-ff6b-4e14-bb0f-2b67b98b4b09\",\n  \"status\": \"redeemed\"\n}"
+              schema:
+                type: object
+                properties:
+                  created:
+                    type: string
+                    example: '2023-11-30T22:10:49.928-08:00'
+                  id:
+                    type: string
+                    example: ddaa42cd-5222-4e8e-b99e-20a41d9d36e2
+                  recipientCreditAmount:
+                    type: integer
+                    example: 500
+                    default: 0
+                  recipientId:
+                    type: string
+                    example: 7b233c5e-98a9-409f-8dab-06b20e0115ac
+                  redemptionEvent:
+                    type: string
+                    example: create_user
+                  redemptionThresholdAmount:
+                    type: integer
+                    example: 0
+                    default: 0
+                  senderCreditAmount:
+                    type: integer
+                    example: 250
+                    default: 0
+                  senderId:
+                    type: string
+                    example: fd84617f-ff6b-4e14-bb0f-2b67b98b4b09
+                  status:
+                    type: string
+                    example: redeemed
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_referral_code\",\n    \"message\": \"The user already claimed a referral code.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_referral_code
+                  message:
+                    type: string
+                    example: The user already claimed a referral code.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    get:
+      summary: Get customer referrals
+      description: ''
+      operationId: get-user-referrals
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"receivedReferral\": {\n    \"created\": \"2023-11-30T22:10:49.928-08:00\",\n    \"id\": \"ddaa42cd-5222-4e8e-b99e-20a41d9d36e2\",\n    \"recipientCreditAmount\": 500,\n    \"recipientId\": \"7b233c5e-98a9-409f-8dab-06b20e0115ac\",\n    \"redemptionEvent\": \"create_user\",\n    \"redemptionThresholdAmount\": 0,\n    \"senderCreditAmount\": 250,\n    \"senderId\": \"fd84617f-ff6b-4e14-bb0f-2b67b98b4b09\",\n    \"status\": \"redeemed\"\n  },\n  \"sentReferrals\": [\n    {\n      \"created\": \"2023-11-30T22:10:49.928-08:00\",\n      \"id\": \"ddaa42cd-5222-4e8e-b99e-20a41d9d36e2\",\n      \"recipientCreditAmount\": 500,\n      \"recipientId\": \"a2233c5e-98a9-409f-8dab-06b20e0115ac\",\n      \"redemptionEvent\": \"create_user\",\n      \"redemptionThresholdAmount\": 0,\n      \"senderCreditAmount\": 250,\n      \"senderId\": \"7b233c5e-98a9-409f-8dab-06b20e0115ac\",\n      \"status\": \"redeemed\"\n    }\n  ]\n}"
+              schema:
+                type: object
+                properties:
+                  receivedReferral:
+                    type: object
+                    properties:
+                      created:
+                        type: string
+                        example: '2023-11-30T22:10:49.928-08:00'
+                      id:
+                        type: string
+                        example: ddaa42cd-5222-4e8e-b99e-20a41d9d36e2
+                      recipientCreditAmount:
+                        type: integer
+                        example: 500
+                        default: 0
+                      recipientId:
+                        type: string
+                        example: 7b233c5e-98a9-409f-8dab-06b20e0115ac
+                      redemptionEvent:
+                        type: string
+                        example: create_user
+                      redemptionThresholdAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      senderCreditAmount:
+                        type: integer
+                        example: 250
+                        default: 0
+                      senderId:
+                        type: string
+                        example: fd84617f-ff6b-4e14-bb0f-2b67b98b4b09
+                      status:
+                        type: string
+                        example: redeemed
+                  sentReferrals:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created:
+                          type: string
+                          example: '2023-11-30T22:10:49.928-08:00'
+                        id:
+                          type: string
+                          example: ddaa42cd-5222-4e8e-b99e-20a41d9d36e2
+                        recipientCreditAmount:
+                          type: integer
+                          example: 500
+                          default: 0
+                        recipientId:
+                          type: string
+                          example: a2233c5e-98a9-409f-8dab-06b20e0115ac
+                        redemptionEvent:
+                          type: string
+                          example: create_user
+                        redemptionThresholdAmount:
+                          type: integer
+                          example: 0
+                          default: 0
+                        senderCreditAmount:
+                          type: integer
+                          example: 250
+                          default: 0
+                        senderId:
+                          type: string
+                          example: 7b233c5e-98a9-409f-8dab-06b20e0115ac
+                        status:
+                          type: string
+                          example: redeemed
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/auto-reload:
+    post:
+      summary: Set auto reload configuration
+      description: ''
+      operationId: configure-auto-reload
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - enabled
+              properties:
+                enabled:
+                  type: boolean
+                  description: Enable or disable wallet auto reload behavior for this customer.
+                reloadAmount:
+                  type: integer
+                  description: Amount to reload when the customer balance goes below the configured threshold. Required if enabled is true.
+                  format: int32
+                paymentMethodId:
+                  type: string
+                  description: Payment method id to be charged. Required if enabled is true.
+                reloadThreshold:
+                  type: integer
+                  description: If the customer's balance goes below this threshold, Ansa will automatically fund the customer's wallet using the specified payment method.
+                  format: int32
+                autoFundingEnabled:
+                  type: boolean
+                  description: Opt into auto funding behavior. Only applies to Ansa Anywhere transactions.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"autoFundingEnabled\": true,\n    \"enabled\": true,\n    \"paymentMethodId\": \"107405de-54ff-472a-9d79-19ea94a2b618\",\n    \"reloadAmount\": 3000,\n    \"reloadThreshold\": 1500\n}"
+              schema:
+                type: object
+                properties:
+                  autoFundingEnabled:
+                    type: boolean
+                    example: true
+                    default: true
+                  enabled:
+                    type: boolean
+                    example: true
+                    default: true
+                  paymentMethodId:
+                    type: string
+                    example: 107405de-54ff-472a-9d79-19ea94a2b618
+                  reloadAmount:
+                    type: integer
+                    example: 3000
+                    default: 0
+                  reloadThreshold:
+                    type: integer
+                    example: 1500
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_payment_method_id\",\n    \"message\": \"The provided payment method id is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_payment_method_id
+                  message:
+                    type: string
+                    example: The provided payment method id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    get:
+      summary: Get auto reload configuration
+      description: ''
+      operationId: get-auto-reload-configuration
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"autoFundingEnabled\": true,\n    \"enabled\": true,\n    \"paymentMethodId\": \"107405de-54ff-472a-9d79-19ea94a2b618\",\n    \"reloadAmount\": 3000,\n    \"reloadThreshold\": 1500\n}"
+              schema:
+                type: object
+                properties:
+                  autoFundingEnabled:
+                    type: boolean
+                    example: true
+                    default: true
+                  enabled:
+                    type: boolean
+                    example: true
+                    default: true
+                  paymentMethodId:
+                    type: string
+                    example: 107405de-54ff-472a-9d79-19ea94a2b618
+                  reloadAmount:
+                    type: integer
+                    example: 3000
+                    default: 0
+                  reloadThreshold:
+                    type: integer
+                    example: 1500
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_customer_id\",\n    \"message\": \"The provided customer id is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_customer_id
+                  message:
+                    type: string
+                    example: The provided customer id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}\n"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers:
+    post:
+      summary: Create customer
+      description: ''
+      operationId: create-customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - billingDetails
+              properties:
+                email:
+                  type: string
+                  description: The customer's email address.
+                phone:
+                  type: string
+                  description: The customer's phone number.
+                billingDetails:
+                  type: object
+                  required:
+                  - firstName
+                  - lastName
+                  properties:
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+                    address:
+                      type: object
+                      required:
+                      - city
+                      - country
+                      - line1
+                      - postalCode
+                      - state
+                      properties:
+                        city:
+                          type: string
+                        country:
+                          type: string
+                        line1:
+                          type: string
+                          description: Address line 1
+                        line2:
+                          type: string
+                          description: Address line 2
+                        postalCode:
+                          type: string
+                        state:
+                          type: string
+                referralCode:
+                  type: string
+                  description: A referral code from another customer that will be claimed as the new customer is created.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to a customer.
+                  format: json
+                walletStatus:
+                  type: string
+                  description: 'Only used for merchants with the verified wallet feature.  The status of the wallet. Possible values are: default, verified'
+                  default: default
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"id\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n    \"email\": \"klause.loupe@email.com\",\n    \"phone\": \"tel:+1-415-555-0100\",\n    \"ansaMetadata\": {\n        \"isTapToPayEnabled\": false,\n        \"referralCode\": \"QCPYCP5I\",\n        \"square\": {\n            \"customerId\": \"\"\n        },\n        \"stripe\": {\n            \"customerId\": \"cus_SEb5W8j0J4qWYF\"\n        }\n    },\n    \"balance\": {\n        \"amount\": 0,\n        \"currency\": \"USD\"\n    },\n    \"billingDetails\": {\n        \"firstName\": \"Klaus\",\n        \"lastName\": \"Loupe\"\n    },\n    \"merchantId\": \"f3735806-cc2f-4be7-ac29-8f28cb526402\",\n    \"metadata\": null,\n    \"status\": \"active\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                  email:
+                    type: string
+                    example: klause.loupe@email.com
+                  phone:
+                    type: string
+                    example: tel:+1-415-555-0100
+                  ansaMetadata:
+                    type: object
+                    properties:
+                      isTapToPayEnabled:
+                        type: boolean
+                        example: false
+                        default: true
+                      referralCode:
+                        type: string
+                        example: QCPYCP5I
+                      square:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: ''
+                      stripe:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: cus_SEb5W8j0J4qWYF
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  billingDetails:
+                    type: object
+                    properties:
+                      firstName:
+                        type: string
+                        example: Klaus
+                      lastName:
+                        type: string
+                        example: Loupe
+                  merchantId:
+                    type: string
+                    example: f3735806-cc2f-4be7-ac29-8f28cb526402
+                  metadata: {}
+                  status:
+                    type: string
+                    example: active
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n  \"code\": \"missing_parameter\",\n  \"message\": \"One of email or phone number must be provided.\",\n  \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: missing_parameter
+                  message:
+                    type: string
+                    example: One of email or phone number must be provided.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '409':
+          description: '409'
+          content:
+            application/json:
+              examples:
+                Conflict:
+                  value: "{\n    \"code\": \"invalid_request\",\n    \"conflictingCustomerIds\": [\n        \"07a95ebc-8478-4221-a391-99ca6916bde6\"\n    ],\n    \"message\": \"duplicate user\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_request
+                  conflictingCustomerIds:
+                    type: array
+                    items:
+                      type: string
+                      example: 07a95ebc-8478-4221-a391-99ca6916bde6
+                  message:
+                    type: string
+                    example: duplicate user
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/payment-methods:
+    post:
+      summary: Create payment method from token
+      description: ''
+      operationId: create-payment-method
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              - tokenSource
+              properties:
+                token:
+                  type: string
+                  description: The token referencing the customer's payment method information.
+                tokenSource:
+                  type: string
+                  description: Enum describing the source of the token.
+                  enum:
+                  - credit_card
+                  - stripe
+                  - google_pay
+                  - apple_pay
+                  - plaid
+                  - bank_account
+                  - software_only
+                tokenData:
+                  type: string
+                  description: Payment token object used for `apple_pay` and `google_pay`.
+                  format: json
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created payment method.
+                  format: json
+                postalCode:
+                  type: string
+                  description: The billing postal code.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Credit Card:
+                  value: "{\n\t\t  \"card\": {\n\t\t\t\t\"brand\": \"visa\",\n\t\t\t\t\"fingerprint\": \"54B7LhtQWFV5vmCRrF2zkWNNfhPtEYfJPG795vaNaAk1\",\n\t\t\t\t\"lastFour\":\"4242\"\n\t\t\t},\n\t\t  \"id\": \"2865a348-d701-4fc5-a925-e7041cb0ebd5\",\n      \"type\": \"credit_card\",\n\t\t\t\"preferred\": true\n}"
+                Bank Account:
+                  value: "{\n    \"bank\": {\n        \"accountNumberLast4\": \"1232\",\n        \"name\": \"Discover\",\n        \"routingNumber\": \"042100122\"\n    },\n    \"id\": \"e846b122-5bb2-436e-222e-0053d54c8111\",\n    \"type\": \"bank_account\"\n}"
+              schema:
+                oneOf:
+                - title: Credit Card
+                  type: object
+                  properties:
+                    card:
+                      type: object
+                      properties:
+                        brand:
+                          type: string
+                          example: visa
+                        fingerprint:
+                          type: string
+                          example: 54B7LhtQWFV5vmCRrF2zkWNNfhPtEYfJPG795vaNaAk1
+                        lastFour:
+                          type: string
+                          example: '4242'
+                    id:
+                      type: string
+                      example: 2865a348-d701-4fc5-a925-e7041cb0ebd5
+                    type:
+                      type: string
+                      example: credit_card
+                    preferred:
+                      type: boolean
+                      example: true
+                      default: true
+                - title: Bank Account
+                  type: object
+                  properties:
+                    bank:
+                      type: object
+                      properties:
+                        accountNumberLast4:
+                          type: string
+                          example: '1232'
+                        name:
+                          type: string
+                          example: Discover
+                        routingNumber:
+                          type: string
+                          example: '042100122'
+                    id:
+                      type: string
+                      example: e846b122-5bb2-436e-222e-0053d54c8111
+                    type:
+                      type: string
+                      example: bank_account
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"code\": \"invalid_payment_method_token\",\n    \"message\": \"The provided payment method token value is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_payment_method_token
+                  message:
+                    type: string
+                    example: The provided payment method token value is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}\n"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    get:
+      summary: List payment methods
+      description: ''
+      operationId: list-payment-methods
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"count\": 1,\n\t\"paymentMethods\": [\n\t\t{\n\t\t  \"card\": {\n\t\t\t\t\"brand\": \"visa\",\n\t\t\t\t\"fingerprint\": \"54B7LhtQWFV5vmCRrF2zkWNNfhPtEYfJPG795vaNaAk1\",\n\t\t\t\t\"lastFour\":\"4242\",\n\t\t\t\t\"firstSix\": \"123456\",\n\t\t\t},\n\t\t  \"id\": \"2865a348-d701-4fc5-a925-e7041cb0ebd5\",\n      \"type\": \"credit_card\",\n\t\t\t\"preferred\": true\n    }\n\t]\n}"
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/virtual-card:
+    post:
+      summary: Create virtual card
+      description: ''
+      operationId: create-virtual-card
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"card\": {\n\t\t\"expMonth\": \"08\",\n\t\t\"expYear\": \"2029\",\n\t\t\"lastFour\": \"8414\",\n\t\t\"cardHolderName\": \"Tony Lee\",\n\t\t\"cardNetwork\": \"mastercard\",\n\t\t\"state\": \"OPEN\"\n\t},\n\t\"id\": \"47d688b2-c0d6-46a2-81e5-2baa979a5aa2\",\n\t\"type\": \"VIRTUAL\"\n}"
+              schema:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      expMonth:
+                        type: string
+                        example: 08
+                      expYear:
+                        type: string
+                        example: '2029'
+                      lastFour:
+                        type: string
+                        example: '8414'
+                      cardHolderName:
+                        type: string
+                        example: Tony Lee
+                      cardNetwork:
+                        type: string
+                        example: mastercard
+                      state:
+                        type: string
+                        example: OPEN
+                  id:
+                    type: string
+                    example: 47d688b2-c0d6-46a2-81e5-2baa979a5aa2
+                  type:
+                    type: string
+                    example: VIRTUAL
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    put:
+      summary: Update virtual card
+      description: ''
+      operationId: edit-virtual-card
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  default: OPEN
+                  enum:
+                  - OPEN
+                  - CLOSED
+                  - PAUSED
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"card\": {\n\t\t\"expMonth\": \"08\",\n\t\t\"expYear\": \"2029\",\n\t\t\"lastFour\": \"8414\",\n\t\t\"cardHolderName\": \"Tony Lee\",\n\t\t\"cardNetwork\": \"mastercard\",\n\t\t\"state\": \"OPEN\"\n\t},\n\t\"id\": \"47d688b2-c0d6-46a2-81e5-2baa979a5aa2\",\n\t\"type\": \"VIRTUAL\"\n}"
+              schema:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      expMonth:
+                        type: string
+                        example: 08
+                      expYear:
+                        type: string
+                        example: '2029'
+                      lastFour:
+                        type: string
+                        example: '8414'
+                      cardHolderName:
+                        type: string
+                        example: Tony Lee
+                      cardNetwork:
+                        type: string
+                        example: mastercard
+                      state:
+                        type: string
+                        example: OPEN
+                  id:
+                    type: string
+                    example: 47d688b2-c0d6-46a2-81e5-2baa979a5aa2
+                  type:
+                    type: string
+                    example: VIRTUAL
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    get:
+      summary: Get virtual card
+      description: ''
+      operationId: get-virtual-card
+      parameters:
+      - name: customerId
+        in: path
+        description: The ID of the customer.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"card\": {\n\t\t\"expMonth\": \"08\",\n\t\t\"expYear\": \"2029\",\n\t\t\"lastFour\": \"8414\",\n\t\t\"cardHolderName\": \"Tony Lee\",\n\t\t\"cardNetwork\": \"mastercard\",\n\t\t\"state\": \"OPEN\"\n\t},\n\t\"id\": \"47d688b2-c0d6-46a2-81e5-2baa979a5aa2\",\n\t\"type\": \"VIRTUAL\"\n}"
+              schema:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      expMonth:
+                        type: string
+                        example: 08
+                      expYear:
+                        type: string
+                        example: '2029'
+                      lastFour:
+                        type: string
+                        example: '8414'
+                      cardHolderName:
+                        type: string
+                        example: Tony Lee
+                      cardNetwork:
+                        type: string
+                        example: mastercard
+                      state:
+                        type: string
+                        example: OPEN
+                  id:
+                    type: string
+                    example: 47d688b2-c0d6-46a2-81e5-2baa979a5aa2
+                  type:
+                    type: string
+                    example: VIRTUAL
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /customers/{customerId}/deactivate:
+    post:
+      summary: Deactivate customer
+      description: Deactivate a [customer](https://docs.ansa.dev/reference/customer). Once a customer is deactivated, they will not be able to access any operations through the API authorized with a client secret, but operations on the deactivate customer authorized with a merchant secret key will continue to go through.
+      operationId: deactivate-customer
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of a customer.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"ansaMetadata\": {\n        \"referralCode\": \"13YXZF9M\",\n        \"square\": {\n            \"customerId\": \"\"\n        },\n        \"stripe\": {\n            \"customerId\": \"cus_SErRLEbirf15ht\"\n        }\n    },\n    \"balance\": {\n        \"amount\": 12312,\n        \"currency\": \"usd\"\n    },\n    \"billingDetails\": {\n        \"firstName\": \"bowie\",\n        \"lastName\": \"earl\"\n    },\n    \"createdAt\": \"2025-05-02T17:49:54.752Z\",\n    \"email\": \"test@email.com\",\n    \"id\": \"8c29a038-febb-4ae2-85c1-0ed1f10a8915\",\n    \"merchantId\": \"016312bb-6b63-4e48-9d11-74f4b1ff21d5\",\n    \"metadata\": {\n        \"squareId\": \"S2Ivcowqwgr2\"\n    },\n    \"status\": \"deactivated\"\n}"
+              schema:
+                type: object
+                properties:
+                  ansaMetadata:
+                    type: object
+                    properties:
+                      referralCode:
+                        type: string
+                        example: 13YXZF9M
+                      square:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: ''
+                      stripe:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: cus_SErRLEbirf15ht
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 12312
+                        default: 0
+                      currency:
+                        type: string
+                        example: usd
+                  billingDetails:
+                    type: object
+                    properties:
+                      firstName:
+                        type: string
+                        example: bowie
+                      lastName:
+                        type: string
+                        example: earl
+                  createdAt:
+                    type: string
+                    example: '2025-05-02T17:49:54.752Z'
+                  email:
+                    type: string
+                    example: test@email.com
+                  id:
+                    type: string
+                    example: 8c29a038-febb-4ae2-85c1-0ed1f10a8915
+                  merchantId:
+                    type: string
+                    example: 016312bb-6b63-4e48-9d11-74f4b1ff21d5
+                  metadata:
+                    type: object
+                    properties:
+                      squareId:
+                        type: string
+                        example: S2Ivcowqwgr2
+                  status:
+                    type: string
+                    example: deactivated
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_customer_id\",\n    \"message\": \"The provided customer id is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_customer_id
+                  message:
+                    type: string
+                    example: The provided customer id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/payment-methods/{paymentMethodId}:
+    delete:
+      summary: Delete payment method
+      description: ''
+      operationId: delete-payment-method
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: paymentMethodId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/fund-wallet:
+    post:
+      summary: Fund customer wallet
+      description: ''
+      operationId: fund-customer-wallet
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer to receive funds.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  description: The amount to send to the customers balance
+                  format: int32
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                reason:
+                  type: string
+                  description: Optional descriptor for the transaction.
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties: {}
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"updatedWalletFundingHoldBalance\": {\n    \"amount\": 100,\n    \"currency\": \"USD\"\n  },\n  \"updatedCustomerBalance\": { \"amount\": 100, \"currency\": \"USD\" },\n  \"transactionId\": \"some-uuid\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"timestamp\": \"some-ISO8601UTC-timestamp\"\n}"
+              schema:
+                type: object
+                properties:
+                  updatedWalletFundingHoldBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  updatedCustomerBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 100
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  transactionId:
+                    type: string
+                    example: some-uuid
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                  timestamp:
+                    type: string
+                    example: some-ISO8601UTC-timestamp
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"code\": \"internal\",\n  \"deciline_code\": \"ansa_error\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  deciline_code:
+                    type: string
+                    example: ansa_error
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/reload-config:
+    get:
+      summary: Get customer reload promotion
+      description: ''
+      operationId: get-customer-reload-promo
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"allowCustomAmount\": false,\n    \"presetAmounts\": [\n        {\n            \"amount\": 2000,\n            \"id\": \"1\",\n            \"isMostPopular\": false,\n            \"promotionAmount\": 0\n        },\n        {\n            \"amount\": 5000,\n            \"id\": \"2\",\n            \"isMostPopular\": true,\n            \"promotionAmount\": 0\n        },\n        {\n            \"amount\": 10000,\n            \"id\": \"3\",\n            \"isMostPopular\": false,\n            \"promotionAmount\": 0\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  allowCustomAmount:
+                    type: boolean
+                    example: false
+                    default: true
+                  presetAmounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        amount:
+                          type: integer
+                          example: 2000
+                          default: 0
+                        id:
+                          type: string
+                          example: '1'
+                        isMostPopular:
+                          type: boolean
+                          example: false
+                          default: true
+                        promotionAmount:
+                          type: integer
+                          example: 0
+                          default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"resource_not_found\",\n    \"message\": \"The requested resource does not exist.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: resource_not_found
+                  message:
+                    type: string
+                    example: The requested resource does not exist.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}:
+    get:
+      summary: Get customer
+      description: ''
+      operationId: get-customer
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: detailed
+        in: query
+        description: Include customer payment methods and auto reload config in the response.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"id\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n    \"merchantId\": \"f3735806-cc2f-4be7-ac29-8f28cb526402\",\n    \"phone\": \"tel:+1-415-555-0100\",\n    \"email\": \"klause.loupe@email.com\",\n    \"ansaMetadata\": {\n        \"isTapToPayEnabled\": false,\n        \"referralCode\": \"QCPYCP5I\",\n        \"square\": {\n            \"customerId\": \"\"\n        },\n        \"stripe\": {\n            \"customerId\": \"cus_SEb5W8j0J4qWYF\"\n        }\n    },\n    \"balance\": {\n        \"amount\": 0,\n        \"currency\": \"USD\"\n    },\n    \"billingDetails\": {\n        \"firstName\": \"Klaus\",\n        \"lastName\": \"Loupe\"\n    },\n    \"createdAt\": \"2025-05-02T00:56:05.910Z\",\n    \"metadata\": null,\n    \"status\": \"active\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                  merchantId:
+                    type: string
+                    example: f3735806-cc2f-4be7-ac29-8f28cb526402
+                  phone:
+                    type: string
+                    example: tel:+1-415-555-0100
+                  email:
+                    type: string
+                    example: klause.loupe@email.com
+                  ansaMetadata:
+                    type: object
+                    properties:
+                      isTapToPayEnabled:
+                        type: boolean
+                        example: false
+                        default: true
+                      referralCode:
+                        type: string
+                        example: QCPYCP5I
+                      square:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: ''
+                      stripe:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: cus_SEb5W8j0J4qWYF
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  billingDetails:
+                    type: object
+                    properties:
+                      firstName:
+                        type: string
+                        example: Klaus
+                      lastName:
+                        type: string
+                        example: Loupe
+                  createdAt:
+                    type: string
+                    example: '2025-05-02T00:56:05.910Z'
+                  metadata: {}
+                  status:
+                    type: string
+                    example: active
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_customer_id\",\n    \"message\": \"The provided customer id is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_customer_id
+                  message:
+                    type: string
+                    example: The provided customer id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}\n"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+    put:
+      summary: Update customer
+      description: ''
+      operationId: update-customer
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: The customer's email address.
+                firstName:
+                  type: string
+                  description: The customer's first name.
+                lastName:
+                  type: string
+                  description: The customer's last name.
+                phone:
+                  type: string
+                  description: The customer's phone number.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to a customer. This update will completely replace any metadata currently on the customer.
+                  format: json
+                walletStatus:
+                  type: string
+                  description: 'Only used for merchants with the verified wallet feature. The status of the wallet. Possible values are: default, verified'
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"ansaMetadata\": {\n        \"isTapToPayEnabled\": false,\n        \"referralCode\": \"QCPYCP5I\",\n        \"square\": {\n            \"customerId\": \"\"\n        },\n        \"stripe\": {\n            \"customerId\": \"cus_SEb5W8j0J4qWYF\"\n        }\n    },\n    \"balance\": {\n        \"amount\": 0,\n        \"currency\": \"USD\"\n    },\n    \"billingDetails\": {\n        \"firstName\": \"Klaus\",\n        \"lastName\": \"Loupe\"\n    },\n    \"email\": \"klause.loupe@email.com\",\n    \"id\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n    \"merchantId\": \"f3735806-cc2f-4be7-ac29-8f28cb526402\",\n    \"metadata\": null,\n    \"phone\": \"tel:+1-415-555-1001\",\n    \"status\": \"active\"\n}"
+              schema:
+                type: object
+                properties:
+                  ansaMetadata:
+                    type: object
+                    properties:
+                      isTapToPayEnabled:
+                        type: boolean
+                        example: false
+                        default: true
+                      referralCode:
+                        type: string
+                        example: QCPYCP5I
+                      square:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: ''
+                      stripe:
+                        type: object
+                        properties:
+                          customerId:
+                            type: string
+                            example: cus_SEb5W8j0J4qWYF
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  billingDetails:
+                    type: object
+                    properties:
+                      firstName:
+                        type: string
+                        example: Klaus
+                      lastName:
+                        type: string
+                        example: Loupe
+                  email:
+                    type: string
+                    example: klause.loupe@email.com
+                  id:
+                    type: string
+                    example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                  merchantId:
+                    type: string
+                    example: f3735806-cc2f-4be7-ac29-8f28cb526402
+                  metadata: {}
+                  phone:
+                    type: string
+                    example: tel:+1-415-555-1001
+                  status:
+                    type: string
+                    example: active
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_phone\",\n    \"message\": \"The provided phone number is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_phone
+                  message:
+                    type: string
+                    example: The provided phone number is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n    \"code\": \"invalid_phone\",\n    \"message\": \"The provided phone number is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_phone
+                  message:
+                    type: string
+                    example: The provided phone number is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/segments:
+    get:
+      summary: List customer segment membership
+      description: ''
+      operationId: list-customer-segment-membership
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n  \"data\": [\n    {\n      \"id\": \"FD8B7B0E-728D-4FDC-86EA-CEFC53AC2EA9\",\n      \"createdAt\": \"2025-05-02T21:17:29.506Z\",\n      \"updatedAt\": \"2025-05-02T21:17:29.506Z\",\n      \"name\": \"segment name\",\n      \"totalCount\": 123\n    }\n  ],\n  \"cursor\": \"cursor\",\n  \"hasMore\": true\n}"
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: FD8B7B0E-728D-4FDC-86EA-CEFC53AC2EA9
+                        createdAt:
+                          type: string
+                          example: '2025-05-02T21:17:29.506Z'
+                        updatedAt:
+                          type: string
+                          example: '2025-05-02T21:17:29.506Z'
+                        name:
+                          type: string
+                          example: segment name
+                        totalCount:
+                          type: integer
+                          example: 123
+                          default: 0
+                  cursor:
+                    type: string
+                    example: cursor
+                  hasMore:
+                    type: boolean
+                    example: true
+                    default: true
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/transactions:
+    get:
+      summary: List customer transactions
+      description: ''
+      operationId: list-transactions
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: cursor
+        in: query
+        description: Optional cursor to fetch the next page of results.
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: '50'
+        description: 'Number of transactions to return in a single page of results. Max: 50'
+      - in: query
+        name: transactionType
+        schema:
+          type: string
+        description: Filter by transaction type.
+      - in: query
+        name: label
+        schema:
+          type: string
+        description: Filter by transaction label.
+      - in: query
+        name: labelContains
+        schema:
+          type: string
+        description: 'Filter by transaction label with substring matching. '
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"hasMore\": false,\n    \"nextCursor\": \"eyJGaXJzdENyZWF0ZWQiOiIyMDI1LTA1LTAyVDIwOjQ4OjQ0LjY3Mzg5WiIsIkZpcnN0Sm91cm5hbEVudHJ5SWQiOiI1ZDkyMjUzYy0yNGVhLTQ2ODAtOTM2Yi03YzNkYjE4Mzg3N2QiLCJMYXN0Q3JlYXRlZCI6IjIwMjUtMDUtMDJUMjA6NDg6NDQuNjczODlaIiwiTGFzdEpvdXJuYWxFbnRyeUlkIjoiNWQ5MjI1M2MtMjRlYS00NjgwLTkzNmItN2MzZGIxODM4NzdkIn0=\",\n    \"transactions\": [\n        {\n            \"additionalInfo\": null,\n            \"label\": \"\",\n            \"metadata\": null,\n            \"timestamp\": \"2025-05-02T20:48:44.673Z\",\n            \"transactionId\": \"5d92253c-24ea-4680-936b-7c3db183877d\",\n            \"amount\": 850,\n            \"created\": \"2025-05-02T20:48:44.673Z\",\n            \"customerId\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n            \"from\": \"f3735806-cc2f-4be7-ac29-8f28cb526402\",\n            \"fromAccountId\": \"721574bc-4bac-4706-b6a1-ad41cac8b3df\",\n            \"fromAccountReferenceId\": \"default\",\n            \"promoInfo\": {\n                \"promoCodeId\": null,\n                \"promotionType\": \"fund_balance\",\n                \"userReferralId\": null\n            },\n            \"reason\": \"\",\n            \"to\": \"09c02419-9ef4-41b5-979d-e9793dadb101\",\n            \"toAccountId\": \"1239cdc7-9097-4720-819a-b553ebe5d5d4\",\n            \"toAccountReferenceId\": \"default\",\n            \"transactionType\": \"merchant_add_promo\",\n            \"transactionTypeDisplayName\": \"Incentive\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  hasMore:
+                    type: boolean
+                    example: false
+                    default: true
+                  nextCursor:
+                    type: string
+                    example: eyJGaXJzdENyZWF0ZWQiOiIyMDI1LTA1LTAyVDIwOjQ4OjQ0LjY3Mzg5WiIsIkZpcnN0Sm91cm5hbEVudHJ5SWQiOiI1ZDkyMjUzYy0yNGVhLTQ2ODAtOTM2Yi03YzNkYjE4Mzg3N2QiLCJMYXN0Q3JlYXRlZCI6IjIwMjUtMDUtMDJUMjA6NDg6NDQuNjczODlaIiwiTGFzdEpvdXJuYWxFbnRyeUlkIjoiNWQ5MjI1M2MtMjRlYS00NjgwLTkzNmItN2MzZGIxODM4NzdkIn0=
+                  transactions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        additionalInfo: {}
+                        label:
+                          type: string
+                          example: ''
+                        metadata: {}
+                        timestamp:
+                          type: string
+                          example: '2025-05-02T20:48:44.673Z'
+                        transactionId:
+                          type: string
+                          example: 5d92253c-24ea-4680-936b-7c3db183877d
+                        amount:
+                          type: integer
+                          example: 850
+                          default: 0
+                        created:
+                          type: string
+                          example: '2025-05-02T20:48:44.673Z'
+                        customerId:
+                          type: string
+                          example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                        from:
+                          type: string
+                          example: f3735806-cc2f-4be7-ac29-8f28cb526402
+                        fromAccountId:
+                          type: string
+                          example: 721574bc-4bac-4706-b6a1-ad41cac8b3df
+                        fromAccountReferenceId:
+                          type: string
+                          example: default
+                        promoInfo:
+                          type: object
+                          properties:
+                            promoCodeId: {}
+                            promotionType:
+                              type: string
+                              example: fund_balance
+                            userReferralId: {}
+                        reason:
+                          type: string
+                          example: ''
+                        to:
+                          type: string
+                          example: 09c02419-9ef4-41b5-979d-e9793dadb101
+                        toAccountId:
+                          type: string
+                          example: 1239cdc7-9097-4720-819a-b553ebe5d5d4
+                        toAccountReferenceId:
+                          type: string
+                          example: default
+                        transactionType:
+                          type: string
+                          example: merchant_add_promo
+                        transactionTypeDisplayName:
+                          type: string
+                          example: Incentive
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_parameter\",\n    \"message\": \"The provided parameter [cursor] is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_parameter
+                  message:
+                    type: string
+                    example: The provided parameter [cursor] is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/peer-fund:
+    post:
+      summary: Peer fund
+      description: ''
+      operationId: peer-fund
+      parameters:
+      - name: customerId
+        in: path
+        description: Customer id of the sender of the funds.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - recipientCustomerId
+              - amount
+              - currency
+              properties:
+                recipientCustomerId:
+                  type: string
+                  description: Customer id that is the recipient of the transferred funds.
+                amount:
+                  type: integer
+                  description: The amount of funds to be sent from the sender to the recipient.
+                  format: int32
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"senderCurrentBalance\": {\n\t\t\"amount\": 1000,\n\t\t\"currency\": \"USD\"\n\t},\n\t\"transactionId\": \"78b7ad05-8935-46e3-85a6-9634d2ba0c2d\",\n  \"label\": \"\",\n\t\"timestamp\": \"2022-12-08T00:42:12.549Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  senderCurrentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 1000
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  transactionId:
+                    type: string
+                    example: 78b7ad05-8935-46e3-85a6-9634d2ba0c2d
+                  label:
+                    type: string
+                    example: ''
+                  timestamp:
+                    type: string
+                    example: '2022-12-08T00:42:12.549Z'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: '{}'
+              schema:
+                type: object
+                properties: {}
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/virtual-cards/{virtualCardId}/provision:
+    post:
+      summary: Push provision virtual card
+      description: ''
+      operationId: push-provision-virtual-card
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer.
+        schema:
+          type: string
+        required: true
+      - name: virtualCardId
+        in: path
+        description: The id of the issued virtual card.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - digitalWallet
+              properties:
+                digitalWallet:
+                  type: string
+                  description: Specification of the digital wallet to be provisioned for.
+                  enum:
+                  - APPLE_PAY
+                  - GOOGLE_PAY
+                nonce:
+                  type: string
+                  description: Required if `digitalWallet` is `APPLE_PAY`. Base64 cryptographic nonce provided by the device's wallet.
+                nonceSignature:
+                  type: string
+                  description: Required if `digitalWallet` is `APPLE_PAY`. Base64 cryptographic nonce provided by the device's wallet.
+                certificate:
+                  type: string
+                  description: Required if `digitalWallet` is `APPLE_PAY`. Apple's public leaf certificate. Base64 encoded in PEM format with headers (-----BEGIN CERTIFICATE-----) and trailers omitted. Provided by the device's wallet.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"provisioningPayload\": \"<provisioning-payload>\",\n\t\"ephemeralPublicKey\": \"<ephemeral-public-key>\",\n\t\"encryptedData\": \"<encrypted-data>\"\n}"
+              schema:
+                type: object
+                properties:
+                  provisioningPayload:
+                    type: string
+                    example: <provisioning-payload>
+                  ephemeralPublicKey:
+                    type: string
+                    example: <ephemeral-public-key>
+                  encryptedData:
+                    type: string
+                    example: <encrypted-data>
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/redeem-gift-card:
+    post:
+      summary: Redeem gift card
+      description: ''
+      operationId: redeem-gift-card
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - gan
+              properties:
+                gan:
+                  type: string
+                  description: Gift card number to be redeemed (eg. gift card account number in Square)
+                label:
+                  type: string
+                  description: A string identifier that can be attached to this transaction ID for future search and observability purposes.
+                metadata:
+                  type: string
+                  description: Set of string key-value pairs that you can attach to a transaction. This can be useful for storing additional information about the transaction in a structured format.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n\t\"currentBalance\": {\n\t\t\"amount\": 1000,\n\t\t\"currency\": \"USD\"\n\t},\n\t\"transactionId\": \"78b7ad05-8935-46e3-85a6-9634d2ba0c2d\",\n  \"label\": \"\",\n\t\"timestamp\": \"2022-12-08T00:42:12.549Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  currentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 1000
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  transactionId:
+                    type: string
+                    example: 78b7ad05-8935-46e3-85a6-9634d2ba0c2d
+                  label:
+                    type: string
+                    example: ''
+                  timestamp:
+                    type: string
+                    example: '2022-12-08T00:42:12.549Z'
+        '402':
+          description: '402'
+          content:
+            application/json:
+              examples:
+                Payment Required:
+                  value: "{\n  \"code\": \"request_failed\",\n  \"declineCode\": \"generic_decline\",\n  \"message\": \"There was an error processing your payment method\",\n  \"type\": \"payment_method_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: request_failed
+                  declineCode:
+                    type: string
+                    example: generic_decline
+                  message:
+                    type: string
+                    example: There was an error processing your payment method
+                  type:
+                    type: string
+                    example: payment_method_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/redeem:
+    post:
+      summary: Redeem promo code
+      description: ''
+      operationId: redeem-promo
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - code
+              properties:
+                code:
+                  type: string
+                  description: The text of an active promo code. Case insensitive.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"currentBalance\": {\n        \"amount\": 123,\n        \"currency\": \"USD\"\n    },\n    \"redeemedAmount\": 123,\n    \"timestamp\": \"2025-04-30T17:19:49.283Z\",\n    \"transactionId\": \"3ae82d0f-d5b0-4358-ac5d-2589ec841915\"\n}"
+              schema:
+                type: object
+                properties:
+                  currentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 123
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  redeemedAmount:
+                    type: integer
+                    example: 123
+                    default: 0
+                  timestamp:
+                    type: string
+                    example: '2025-04-30T17:19:49.283Z'
+                  transactionId:
+                    type: string
+                    example: 3ae82d0f-d5b0-4358-ac5d-2589ec841915
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"promo_code_already_redeemed\",\n    \"message\": \"The provided promo code has already been redeemed.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: promo_code_already_redeemed
+                  message:
+                    type: string
+                    example: The provided promo code has already been redeemed.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/payment-method/{paymentMethodId}:
+    put:
+      summary: Update payment method
+      description: ''
+      operationId: update-payment-method
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: paymentMethodId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - preferred
+              properties:
+                preferred:
+                  type: boolean
+                  description: Mark the specified payment method as preferred or not. Each customer can only have one preferred payment method at a time.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Sucess:
+                  value: "{\n\t\t  \"card\": {\n\t\t\t\t\"brand\": \"visa\",\n\t\t\t\t\"fingerprint\": \"54B7LhtQWFV5vmCRrF2zkWNNfhPtEYfJPG795vaNaAk1\",\n\t\t\t\t\"lastFour\":\"4242\"\n\t\t\t},\n\t\t  \"id\": \"2865a348-d701-4fc5-a925-e7041cb0ebd5\",\n      \"type\": \"credit_card\",\n\t\t\t\"preferred\": true\n}"
+              schema:
+                type: object
+                properties:
+                  card:
+                    type: object
+                    properties:
+                      brand:
+                        type: string
+                        example: visa
+                      fingerprint:
+                        type: string
+                        example: 54B7LhtQWFV5vmCRrF2zkWNNfhPtEYfJPG795vaNaAk1
+                      lastFour:
+                        type: string
+                        example: '4242'
+                  id:
+                    type: string
+                    example: 2865a348-d701-4fc5-a925-e7041cb0ebd5
+                  type:
+                    type: string
+                    example: credit_card
+                  preferred:
+                    type: boolean
+                    example: true
+                    default: true
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+  /v1/customers/{customerId}/use-balance:
+    post:
+      summary: Use balance
+      description: ''
+      operationId: use-balance
+      parameters:
+      - name: customerId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  description: The amount of the customer's purchase.
+                  format: int32
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"additionalInfo\": null,\n    \"label\": \"example-label\",\n    \"metadata\": null,\n    \"timestamp\": \"2025-05-02T21:24:47.382Z\",\n    \"transactionId\": \"1609359e-de76-4c49-becb-887870031a87\",\n    \"currentBalance\": {\n        \"amount\": 2600,\n        \"currency\": \"USD\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  additionalInfo: {}
+                  label:
+                    type: string
+                    example: example-label
+                  metadata: {}
+                  timestamp:
+                    type: string
+                    example: '2025-05-02T21:24:47.382Z'
+                  transactionId:
+                    type: string
+                    example: 1609359e-de76-4c49-becb-887870031a87
+                  currentBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 2600
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_amount\",\n    \"message\": \"The provided amount is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_amount
+                  message:
+                    type: string
+                    example: The provided amount is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Customers
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

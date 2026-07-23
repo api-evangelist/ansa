@@ -1,0 +1,97 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/ansa-openapi-original.yml
+entities:
+  customer:
+    id_field: customerId
+    domain: wallet
+    description: A wallet holder scoped to a merchant.
+  merchant:
+    id_field: merchantId
+    domain: account
+    description: The business operating the branded wallet program.
+  payment_method:
+    id_field: paymentMethodId
+    domain: payments
+    description: A card or token attached to a customer.
+  transaction:
+    id_field: transactionId
+    domain: ledger
+    description: A movement of funds on a customer wallet.
+  refund:
+    id_field: refundId
+    domain: payments
+    description: A refund to balance or payment method.
+  customer_segment:
+    id_field: segmentId
+    domain: audience
+    description: A group of customers for targeting.
+  campaign:
+    id_field: campaignId
+    domain: incentives
+    description: An incentive campaign run by a merchant.
+  promotional_account:
+    id_field: promotionalAccountId
+    domain: incentives
+    description: A funding account for promotions/incentives.
+  virtual_card:
+    id_field: virtualCardId
+    domain: payments
+    description: A provisionable virtual card issued to a customer.
+  payment_session:
+    id_field: null
+    domain: auth
+    description: A short-lived client-secret session for client-side calls.
+  user_referral:
+    id_field: null
+    domain: growth
+    description: A referral between customers.
+relationships:
+- from: customer
+  type: belongs_to
+  to: merchant
+  via: merchantId
+- from: payment_method
+  type: belongs_to
+  to: customer
+  via: customerId
+- from: customer
+  type: has_many
+  to: payment_method
+  via: customerId
+- from: transaction
+  type: belongs_to
+  to: customer
+  via: customerId
+- from: customer
+  type: has_many
+  to: transaction
+  via: customerId
+- from: refund
+  type: belongs_to
+  to: transaction
+  via: transactionId
+- from: transaction
+  type: has_many
+  to: refund
+  via: transactionId
+- from: virtual_card
+  type: belongs_to
+  to: customer
+  via: customerId
+- from: campaign
+  type: belongs_to
+  to: merchant
+  via: merchantId
+- from: promotional_account
+  type: belongs_to
+  to: merchant
+  via: merchantId
+- from: customer_segment
+  type: has_many
+  to: customer
+  via: segmentId
+- from: user_referral
+  type: belongs_to
+  to: customer
+  via: customerId

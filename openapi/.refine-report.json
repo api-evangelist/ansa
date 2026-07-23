@@ -1,0 +1,26 @@
+{
+  "provider": "ansa",
+  "sources": [
+    "ansa-add-incentive-api-openapi.yml",
+    "ansa-customer-segments-api-openapi.yml",
+    "ansa-customers-api-openapi.yml",
+    "ansa-initialize-payment-session-api-openapi.yml",
+    "ansa-merchants-api-openapi.yml",
+    "ansa-refunds-api-openapi.yml",
+    "ansa-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "ansa-add-incentive-api-openapi.yml",
+    "ansa-customer-segments-api-openapi.yml",
+    "ansa-customers-api-openapi.yml",
+    "ansa-initialize-payment-session-api-openapi.yml",
+    "ansa-merchants-api-openapi.yml",
+    "ansa-refunds-api-openapi.yml",
+    "ansa-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

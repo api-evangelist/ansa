@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Initialize Payment Session API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Initialize Payment Session
+paths:
+  /v1/initialize-payment-session:
+    post:
+      summary: Initialize payment session
+      description: ''
+      operationId: initialize-payment-session
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - customerId
+              properties:
+                customerId:
+                  type: string
+                  description: The customer id to create a payment session for.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n\t\"id\":\"9f656bb4-7e9e-450f-8cf6-647cf029454d\",\n\t\"clientSecret\": \"ansa_cs_sandbox_+v1234512345\",\n\t\"customerId\":\"11f7d38b-162f-4802-9b71-e96f59a8411d\",\n\t\"created\":\"2022-12-08T23:47:41.643Z\",\n\t\"validUntil\":\"2022-12-09T23:47:41.643Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 9f656bb4-7e9e-450f-8cf6-647cf029454d
+                  clientSecret:
+                    type: string
+                    example: ansa_cs_sandbox_+v1234512345
+                  customerId:
+                    type: string
+                    example: 11f7d38b-162f-4802-9b71-e96f59a8411d
+                  created:
+                    type: string
+                    example: '2022-12-08T23:47:41.643Z'
+                  validUntil:
+                    type: string
+                    example: '2022-12-09T23:47:41.643Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Initialize Payment Session
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).

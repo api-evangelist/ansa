@@ -1,0 +1,1709 @@
+openapi: 3.1.0
+info:
+  title: Ansa Add Incentive Merchants API
+  version: '1'
+  description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
+servers:
+- url: https://api.getansa.com
+  description: Live
+- url: https://api-sandbox.getansa.com
+  description: Sandbox
+security:
+- sec0: []
+tags:
+- name: Merchants
+paths:
+  /v1/merchants/{merchantId}/calculate-settlement:
+    post:
+      summary: Calculate settlement
+      description: ''
+      operationId: calculate-settlement
+      parameters:
+      - name: merchantId
+        in: path
+        description: The id of the merchant
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - currency
+              properties:
+                currency:
+                  type: string
+                  description: The three-letter ISO currency code, in lowercase.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"availableSettlementAmount\": 1225,\n    \"currency\": \"USD\",\n    \"currentMerchantBalance\": {\n        \"amount\": 1500,\n        \"currency\": \"USD\",\n        \"promotionalAmount\": 0,\n        \"reserveAmount\": 0,\n        \"walletFundingHoldAmount\": -275\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  availableSettlementAmount:
+                    type: integer
+                    example: 1225
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  currentMerchantBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 1500
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                      promotionalAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      reserveAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      walletFundingHoldAmount:
+                        type: integer
+                        example: -275
+                        default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n  \"code\": \"invalid_merchant_id\",\n    \"message\": \"The provided merchant id is invalid.\",\n      \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_merchant_id
+                  message:
+                    type: string
+                    example: The provided merchant id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/campaigns:
+    post:
+      summary: Create campaign
+      description: ''
+      operationId: create-incentive
+      parameters:
+      - name: merchantId
+        in: path
+        description: The ID of the merchant. You will receive this constant value during onboarding.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - type
+              - settings
+              properties:
+                name:
+                  type: string
+                  description: The name of the campaign. The campaign name is not visible to end users
+                type:
+                  type: string
+                  description: The type of incentive campaign to create
+                  enum:
+                  - cashback
+                  - reloadBonus
+                  - promoCode
+                  - drop
+                  - userCreationBonus
+                settings:
+                  type: object
+                  description: Shared campaign settings
+                  required:
+                  - startAt
+                  - targetSegments
+                  properties:
+                    startAt:
+                      type: string
+                      description: When the campaign will start being active.
+                      format: date-time
+                    endAt:
+                      type: string
+                      description: When the campaign will stop being effective.
+                      format: date-time
+                    targetSegments:
+                      type: array
+                      description: List of segment UUIDs that will be eligible for the campaign.
+                      items:
+                        type: string
+                    expirationMetadata:
+                      type: object
+                      description: Configuration for the expiration of funds
+                      properties:
+                        type:
+                          type: string
+                          description: Type specifies the expiration strategy for promotions granted by this campaign.
+                          enum:
+                          - xDaysAfterRedeeming
+                        xDaysAfterRedeeming:
+                          type: object
+                          properties:
+                            numberOfDays:
+                              type: integer
+                              description: Number of days after redemption before the funds expire.
+                              format: int32
+                cashback:
+                  type: object
+                  description: Cash back configuration object
+                  required:
+                  - percentCashback
+                  properties:
+                    percentCashback:
+                      type: integer
+                      description: Cash back a user will receive as a percentage of use balance.
+                      format: int32
+                reloadBonus:
+                  type: object
+                  description: Reload bonus configurations
+                  properties:
+                    type:
+                      type: string
+                      description: Type of reload bonus campaign affecting the number of times a single user can receive bonuses from this reload bonus campaign
+                      enum:
+                      - oncePerCampaign
+                      - unlimited
+                    rewardTiers:
+                      type: array
+                      description: Configuration object for the reload bonus reward tiers
+                      items:
+                        properties:
+                          minAmount:
+                            type: integer
+                            description: Fund amount required to trigger this reward tier
+                            format: int32
+                          promoAmount:
+                            type: integer
+                            description: Promotion amount given to the customer
+                            format: int32
+                        type: object
+                promoCode:
+                  type: object
+                  description: Promo code configurations
+                  required:
+                  - code
+                  - amount
+                  properties:
+                    code:
+                      type: string
+                      description: The code that user's will enter to redeem the code. Case insensitive, stored in uppercase.
+                    amount:
+                      type: integer
+                      description: The credit amount that the user receives when this promo code is redeemed. The integer amount is in the lowest denomination of the merchant currency code.
+                      format: int32
+                drop:
+                  type: object
+                  description: Drop configurations
+                  required:
+                  - amount
+                  properties:
+                    amount:
+                      type: integer
+                      description: The credit amount that the user receives when this promo code is redeemed. The integer amount is in the lowest denomination of the merchant currency code.
+                      format: int32
+                userCreationBonus:
+                  type: object
+                  properties:
+                    amount:
+                      type: integer
+                      description: Incentive amount given to the customer
+                  description: User creation bonus configurations
+                  required:
+                  - amount
+      responses:
+        '201':
+          description: '201'
+          content:
+            application/json:
+              examples:
+                Reload Bonus Campaign:
+                  value: "{\n    \"id\": \"9bbbf5cf-41fe-4057-a8cf-a94e379854a6\",\n    \"name\": \"test-campaign\",\n    \"reloadBonus\": {\n        \"rewardTiers\": [\n            {\n                \"minAmount\": 100,\n                \"promoAmount\": 100\n            }\n        ],\n        \"type\": \"unlimited\"\n    },\n    \"settings\": {\n        \"endAt\": \"2026-09-20T20:34:07.000Z\",\n        \"expirationMetadata\": {\n            \"type\": \"xDaysAfterRedeeming\",\n            \"xDaysAfterRedeeming\": {\n                \"numDays\": 1\n            }\n        },\n        \"startAt\": \"2022-09-20T20:34:07.000Z\",\n        \"targetSegments\": [\n            {\n                \"id\": \"28f7082f-d040-4eb3-b008-12e6319c4783\",\n                \"name\": \"All Customers\"\n            }\n        ]\n    },\n    \"type\": \"reloadBonus\"\n}"
+                Cashback Campaign:
+                  value: "{\n    \"cashback\": {\n        \"percentCashback\": 10\n    },\n    \"id\": \"d0ad2310-eed2-4847-ae92-3720613dd3a4\",\n    \"name\": \"test-campaign\",\n    \"settings\": {\n        \"endAt\": \"2026-09-20T20:34:07.000Z\",\n        \"expirationMetadata\": {\n            \"type\": \"xDaysAfterRedeeming\",\n            \"xDaysAfterRedeeming\": {\n                \"numDays\": 1\n            }\n        },\n        \"startAt\": \"2022-09-20T20:34:07.000Z\",\n        \"targetSegments\": [\n            {\n                \"id\": \"28f7082f-d040-4eb3-b008-12e6319c4783\",\n                \"name\": \"All Customers\"\n            }\n        ]\n    },\n    \"type\": \"cashback\"\n}"
+                Promo Code Campaign:
+                  value: "{\n    \"id\": \"20e6014c-774f-4b33-84cc-8d7a4cce1fff\",\n    \"name\": \"test-campaign\",\n    \"promoCode\": {\n        \"amount\": 123,\n        \"code\": \"1234\"\n    },\n    \"settings\": {\n        \"endAt\": \"2026-09-20T20:34:07.000Z\",\n        \"expirationMetadata\": {\n            \"type\": \"xDaysAfterRedeeming\",\n            \"xDaysAfterRedeeming\": {\n                \"numDays\": 1\n            }\n        },\n        \"startAt\": \"2022-09-20T20:34:07.000Z\",\n        \"targetSegments\": [\n            {\n                \"id\": \"28f7082f-d040-4eb3-b008-12e6319c4783\",\n                \"name\": \"All Customers\"\n            }\n        ]\n    },\n    \"type\": \"promoCode\"\n}"
+              schema:
+                oneOf:
+                - title: Reload Bonus Campaign
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 9bbbf5cf-41fe-4057-a8cf-a94e379854a6
+                    name:
+                      type: string
+                      example: test-campaign
+                    reloadBonus:
+                      type: object
+                      properties:
+                        rewardTiers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              minAmount:
+                                type: integer
+                                example: 100
+                                default: 0
+                              promoAmount:
+                                type: integer
+                                example: 100
+                                default: 0
+                        type:
+                          type: string
+                          example: unlimited
+                    settings:
+                      type: object
+                      properties:
+                        endAt:
+                          type: string
+                          example: '2026-09-20T20:34:07.000Z'
+                        expirationMetadata:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: xDaysAfterRedeeming
+                            xDaysAfterRedeeming:
+                              type: object
+                              properties:
+                                numDays:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                        startAt:
+                          type: string
+                          example: '2022-09-20T20:34:07.000Z'
+                        targetSegments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 28f7082f-d040-4eb3-b008-12e6319c4783
+                              name:
+                                type: string
+                                example: All Customers
+                    type:
+                      type: string
+                      example: reloadBonus
+                - title: Cashback Campaign
+                  type: object
+                  properties:
+                    cashback:
+                      type: object
+                      properties:
+                        percentCashback:
+                          type: integer
+                          example: 10
+                          default: 0
+                    id:
+                      type: string
+                      example: d0ad2310-eed2-4847-ae92-3720613dd3a4
+                    name:
+                      type: string
+                      example: test-campaign
+                    settings:
+                      type: object
+                      properties:
+                        endAt:
+                          type: string
+                          example: '2026-09-20T20:34:07.000Z'
+                        expirationMetadata:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: xDaysAfterRedeeming
+                            xDaysAfterRedeeming:
+                              type: object
+                              properties:
+                                numDays:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                        startAt:
+                          type: string
+                          example: '2022-09-20T20:34:07.000Z'
+                        targetSegments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 28f7082f-d040-4eb3-b008-12e6319c4783
+                              name:
+                                type: string
+                                example: All Customers
+                    type:
+                      type: string
+                      example: cashback
+                - title: Promo Code Campaign
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 20e6014c-774f-4b33-84cc-8d7a4cce1fff
+                    name:
+                      type: string
+                      example: test-campaign
+                    promoCode:
+                      type: object
+                      properties:
+                        amount:
+                          type: integer
+                          example: 123
+                          default: 0
+                        code:
+                          type: string
+                          example: '1234'
+                    settings:
+                      type: object
+                      properties:
+                        endAt:
+                          type: string
+                          example: '2026-09-20T20:34:07.000Z'
+                        expirationMetadata:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              example: xDaysAfterRedeeming
+                            xDaysAfterRedeeming:
+                              type: object
+                              properties:
+                                numDays:
+                                  type: integer
+                                  example: 1
+                                  default: 0
+                        startAt:
+                          type: string
+                          example: '2022-09-20T20:34:07.000Z'
+                        targetSegments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 28f7082f-d040-4eb3-b008-12e6319c4783
+                              name:
+                                type: string
+                                example: All Customers
+                    type:
+                      type: string
+                      example: promoCode
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": 602,\n    \"message\": \"name in body is required\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 602
+                    default: 0
+                  message:
+                    type: string
+                    example: name in body is required
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+    get:
+      summary: List campaigns
+      description: ''
+      operationId: list-incentive-campaigns
+      parameters:
+      - name: limit
+        in: query
+        description: The maximum number of campaigns to return.
+        schema:
+          type: integer
+          format: int32
+      - name: cursor
+        in: query
+        description: A cursor returned from a previous request to fetch the next or previous page.
+        schema:
+          type: string
+      - name: direction
+        in: query
+        description: Pagination direction. Either "forward" or "backward"
+        schema:
+          type: string
+          enum:
+          - forward
+          - backward
+      - name: status
+        in: query
+        description: Campaign status filter
+        schema:
+          type: string
+          enum:
+          - active
+          - scheduled
+          - completed
+      - name: type
+        in: query
+        description: Campaign type filter
+        schema:
+          type: string
+          enum:
+          - cashback
+          - reloadBonus
+          - promoCode
+          - drop
+          - userCreationBonus
+      - name: merchantId
+        in: path
+        description: The id of the merchant.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"campaigns\": [\n        {\n            \"id\": \"63a11091-9a3b-4685-be9c-d69ee6c79531\",\n            \"name\": \"test-campaign\",\n            \"reloadBonus\": {\n                \"rewardTiers\": [\n                    {\n                        \"minAmount\": 100,\n                        \"promoAmount\": 100\n                    }\n                ],\n                \"type\": \"unlimited\"\n            },\n            \"settings\": {\n                \"endAt\": \"2026-09-20T20:34:07.000Z\",\n                \"expirationMetadata\": {\n                    \"type\": \"xDaysAfterRedeeming\",\n                    \"xDaysAfterRedeeming\": {\n                        \"numDays\": 1\n                    }\n                },\n                \"startAt\": \"2022-09-20T20:34:07.000Z\",\n                \"targetSegments\": null\n            },\n            \"type\": \"reloadBonus\"\n        },\n        {\n            \"id\": \"25c1bf84-7dcf-486c-9ef9-04ec24d63267\",\n            \"name\": \"test-campaign\",\n            \"reloadBonus\": {\n                \"rewardTiers\": [\n                    {\n                        \"minAmount\": 100,\n                        \"promoAmount\": 100\n                    }\n                ],\n                \"type\": \"unlimited\"\n            },\n            \"settings\": {\n                \"endAt\": \"2026-09-20T20:34:07.000Z\",\n                \"expirationMetadata\": {\n                    \"type\": \"xDaysAfterRedeeming\",\n                    \"xDaysAfterRedeeming\": {\n                        \"numDays\": 1\n                    }\n                },\n                \"startAt\": \"2022-09-20T20:34:07.000Z\",\n                \"targetSegments\": null\n            },\n            \"type\": \"reloadBonus\"\n        }\n    ],\n    \"cursor\": \"eyJGaXJzdENyZWF0ZWRBdCI6IjIwMjUtMDQtMjlUMjE6Mjc6NTEuNDg1MjY1WiIsIkZpcnN0SWQiOiI2M2ExMTA5MS05YTNiLTQ2ODUtYmU5Yy1kNjllZTZjNzk1MzEiLCJMYXN0Q3JlYXRlZEF0IjoiMjAyNS0wNC0yOVQyMToyNzozMS43MzgyNTZaIiwiTGFzdElkIjoiMjVjMWJmODQtN2RjZi00ODZjLTllZjktMDRlYzI0ZDYzMjY3In0=\",\n    \"hasMore\": true\n}"
+              schema:
+                type: object
+                properties:
+                  campaigns:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 63a11091-9a3b-4685-be9c-d69ee6c79531
+                        name:
+                          type: string
+                          example: test-campaign
+                        reloadBonus:
+                          type: object
+                          properties:
+                            rewardTiers:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  minAmount:
+                                    type: integer
+                                    example: 100
+                                    default: 0
+                                  promoAmount:
+                                    type: integer
+                                    example: 100
+                                    default: 0
+                            type:
+                              type: string
+                              example: unlimited
+                        settings:
+                          type: object
+                          properties:
+                            endAt:
+                              type: string
+                              example: '2026-09-20T20:34:07.000Z'
+                            expirationMetadata:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  example: xDaysAfterRedeeming
+                                xDaysAfterRedeeming:
+                                  type: object
+                                  properties:
+                                    numDays:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                            startAt:
+                              type: string
+                              example: '2022-09-20T20:34:07.000Z'
+                            targetSegments: {}
+                        type:
+                          type: string
+                          example: reloadBonus
+                  cursor:
+                    type: string
+                    example: eyJGaXJzdENyZWF0ZWRBdCI6IjIwMjUtMDQtMjlUMjE6Mjc6NTEuNDg1MjY1WiIsIkZpcnN0SWQiOiI2M2ExMTA5MS05YTNiLTQ2ODUtYmU5Yy1kNjllZTZjNzk1MzEiLCJMYXN0Q3JlYXRlZEF0IjoiMjAyNS0wNC0yOVQyMToyNzozMS43MzgyNTZaIiwiTGFzdElkIjoiMjVjMWJmODQtN2RjZi00ODZjLTllZjktMDRlYzI0ZDYzMjY3In0=
+                  hasMore:
+                    type: boolean
+                    example: true
+                    default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": 606,\n    \"message\": \"direction in query should be one of [forward backward]\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 606
+                    default: 0
+                  message:
+                    type: string
+                    example: direction in query should be one of [forward backward]
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/promotional-accounts:
+    post:
+      summary: Create promotional account
+      description: ''
+      operationId: create-promotional-account
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - referenceId
+              properties:
+                name:
+                  type: string
+                  description: The name of the promotional account
+                referenceId:
+                  type: string
+                  description: Unique identifier for the promotional account.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the promotional account.
+                  format: json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"balance\": {\n        \"amount\": 0,\n        \"currency\": \"USD\"\n    },\n    \"created\": \"2024-04-10T19:20:45.948Z\",\n    \"id\": \"996671e9-2c52-44d7-84e5-245689d98ea2\",\n    \"metadata\": {\n        \"key\": \"value\",\n        \"key2\": \"value2\"\n    },\n    \"name\": \"promotional-account-1\",\n    \"referenceId\": \"222\",\n    \"updated\": \"2024-04-10T19:20:45.948Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  created:
+                    type: string
+                    example: '2024-04-10T19:20:45.948Z'
+                  id:
+                    type: string
+                    example: 996671e9-2c52-44d7-84e5-245689d98ea2
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                      key2:
+                        type: string
+                        example: value2
+                  name:
+                    type: string
+                    example: promotional-account-1
+                  referenceId:
+                    type: string
+                    example: '222'
+                  updated:
+                    type: string
+                    example: '2024-04-10T19:20:45.948Z'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: " {\n   \"code\": \"invalid_parameter\",\n     \"message\": \"The provided parameter [referenceId] is invalid.\",\n       \"type\": \"invalid_request_error\",\n }"
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+    get:
+      summary: List promotional accounts
+      description: ''
+      operationId: get-promotional-accounts
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"promotionalAccounts\": [\n        {\n            \"balance\": {\n                \"amount\": 0,\n                \"currency\": \"usd\"\n            },\n            \"created\": \"2024-04-10T19:20:45.948Z\",\n            \"id\": \"996671e9-2c52-44d7-84e5-245689d98ea2\",\n            \"metadata\": {\n                \"key\": \"value\",\n                \"key2\": \"value2\"\n            },\n            \"name\": \"promotional-account-1\",\n            \"referenceId\": \"222\",\n            \"updated\": \"2024-04-10T19:20:45.948Z\"\n        },\n        {\n            \"balance\": {\n                \"amount\": 99928,\n                \"currency\": \"USD\"\n            },\n            \"created\": \"2023-08-23T17:29:22.167Z\",\n            \"id\": \"c24b1f46-4249-4335-9eaf-a25f6ac6db9f\",\n            \"metadata\": {},\n            \"name\": \"\",\n            \"referenceId\": \"default\",\n            \"updated\": \"2024-03-12T04:07:07.587Z\"\n        }\n    ]\n}"
+              schema:
+                type: object
+                properties:
+                  promotionalAccounts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        balance:
+                          type: object
+                          properties:
+                            amount:
+                              type: integer
+                              example: 0
+                              default: 0
+                            currency:
+                              type: string
+                              example: usd
+                        created:
+                          type: string
+                          example: '2024-04-10T19:20:45.948Z'
+                        id:
+                          type: string
+                          example: 996671e9-2c52-44d7-84e5-245689d98ea2
+                        metadata:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                              example: value
+                            key2:
+                              type: string
+                              example: value2
+                        name:
+                          type: string
+                          example: promotional-account-1
+                        referenceId:
+                          type: string
+                          example: '222'
+                        updated:
+                          type: string
+                          example: '2024-04-10T19:20:45.948Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/fund-promotional-account:
+    post:
+      summary: Fund promotional account
+      description: ''
+      operationId: fund-promotional-account
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - promotionalAccountId
+              properties:
+                amount:
+                  type: integer
+                  description: The amount to transfer from the reserve to the specified promotional account.
+                  format: int32
+                note:
+                  type: string
+                  description: Optional descriptor for this transfer.
+                promotionalAccountId:
+                  type: string
+                  description: The id of the promotional account to fund.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"amount\": 11000,\n    \"timestamp\": \"2024-04-10T21:48:28.716Z\",\n    \"transactionId\": \"fbb0821f-8de6-454a-840f-3b3fc6bb59be\",\n    \"updatedPromoFundsBalance\": 11000,\n    \"updatedReserveBalance\": 989000\n}"
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    example: 11000
+                    default: 0
+                  timestamp:
+                    type: string
+                    example: '2024-04-10T21:48:28.716Z'
+                  transactionId:
+                    type: string
+                    example: fbb0821f-8de6-454a-840f-3b3fc6bb59be
+                  updatedPromoFundsBalance:
+                    type: integer
+                    example: 11000
+                    default: 0
+                  updatedReserveBalance:
+                    type: integer
+                    example: 989000
+                    default: 0
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/fund-wallet-funding-hold-account:
+    post:
+      summary: Fund wallet funding hold account
+      description: ''
+      operationId: fund-wallet-hold-account
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  description: The amount to transfer from the reserve to the wallet funding hold account.
+                  format: int32
+                currency:
+                  type: string
+                  description: Three-letter ISO currency code.
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the created transaction.
+                  format: json
+                label:
+                  type: string
+                  description: A string reference that can be attached to this transaction for future discoverability.
+                additionalInfo:
+                  type: object
+                  description: Additional structured information about this transaction. Does not impact transaction behavior.
+                  properties:
+                    storeId:
+                      type: string
+                      description: An id for the store this transaction occurred at. This value is used in reporting.
+                    storeName:
+                      type: string
+                      description: The name of the store this transaction occurred at. This value is used in reporting.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"amount\": 750,\n    \"currency\": \"USD\",\n    \"transactionId\": \"14477927-52fa-4bce-bef0-90901ea4ecad\",\n    \"timestamp\": \"2025-05-07T21:53:22.515Z\",\n    \"updatedWalletFundingHoldBalance\": {\n        \"amount\": 750,\n        \"currency\": \"USD\"\n    },\n    \"updatedReserveBalance\": {\n        \"amount\": 250,\n        \"currency\": \"USD\"\n    },\n    \"additionalInfo\": {},\n    \"label\": \"\",\n    \"metadata\": {}\n}"
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    example: 750
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  transactionId:
+                    type: string
+                    example: 14477927-52fa-4bce-bef0-90901ea4ecad
+                  timestamp:
+                    type: string
+                    example: '2025-05-07T21:53:22.515Z'
+                  updatedWalletFundingHoldBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 750
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  updatedReserveBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 250
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  additionalInfo:
+                    type: object
+                    properties: {}
+                  label:
+                    type: string
+                    example: ''
+                  metadata:
+                    type: object
+                    properties: {}
+        '402':
+          description: '402'
+          content:
+            application/json:
+              examples:
+                Insufficient Funds:
+                  value: "{\n  \"code\": \"insufficient_funds\",\n    \"message\": \"The request amount was higher than the available funds.\",\n      \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: insufficient_funds
+                  message:
+                    type: string
+                    example: The request amount was higher than the available funds.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '409':
+          description: '409'
+          content:
+            application/json:
+              examples:
+                Conflict:
+                  value: "{\n  \"code\": \"duplicate_request\",\n  \"message\": \"The provided amount is invalid.\",\n  \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: duplicate_request
+                  message:
+                    type: string
+                    example: The provided amount is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Server Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/campaigns/{campaignId}:
+    get:
+      summary: Get campaign
+      description: ''
+      operationId: get-campaign
+      parameters:
+      - name: merchantId
+        in: path
+        description: The id of the merchant.
+        schema:
+          type: string
+        required: true
+      - name: campaignId
+        in: path
+        description: The id of the campaign.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"id\": \"9bbbf5cf-41fe-4057-a8cf-a94e379854a6\",\n    \"name\": \"test-campaign\",\n    \"reloadBonus\": {\n        \"rewardTiers\": [\n            {\n                \"minAmount\": 100,\n                \"promoAmount\": 100\n            }\n        ],\n        \"type\": \"unlimited\"\n    },\n    \"settings\": {\n        \"endAt\": \"2026-09-20T20:34:07.000Z\",\n        \"expirationMetadata\": {\n            \"type\": \"xDaysAfterRedeeming\",\n            \"xDaysAfterRedeeming\": {\n                \"numDays\": 1\n            }\n        },\n        \"startAt\": \"2022-09-20T20:34:07.000Z\",\n        \"targetSegments\": [\n            {\n                \"id\": \"28f7082f-d040-4eb3-b008-12e6319c4783\",\n                \"name\": \"All Customers\"\n            }\n        ]\n    },\n    \"type\": \"reloadBonus\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 9bbbf5cf-41fe-4057-a8cf-a94e379854a6
+                  name:
+                    type: string
+                    example: test-campaign
+                  reloadBonus:
+                    type: object
+                    properties:
+                      rewardTiers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            minAmount:
+                              type: integer
+                              example: 100
+                              default: 0
+                            promoAmount:
+                              type: integer
+                              example: 100
+                              default: 0
+                      type:
+                        type: string
+                        example: unlimited
+                  settings:
+                    type: object
+                    properties:
+                      endAt:
+                        type: string
+                        example: '2026-09-20T20:34:07.000Z'
+                      expirationMetadata:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: xDaysAfterRedeeming
+                          xDaysAfterRedeeming:
+                            type: object
+                            properties:
+                              numDays:
+                                type: integer
+                                example: 1
+                                default: 0
+                      startAt:
+                        type: string
+                        example: '2022-09-20T20:34:07.000Z'
+                      targetSegments:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 28f7082f-d040-4eb3-b008-12e6319c4783
+                            name:
+                              type: string
+                              example: All Customers
+                  type:
+                    type: string
+                    example: reloadBonus
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/balance:
+    get:
+      summary: Get merchant balance
+      description: ''
+      operationId: get-merchant-balance
+      parameters:
+      - name: merchantId
+        in: path
+        description: The id of the merchant.
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"amount\": 10000,\n    \"currency\": \"USD\",\n    \"promotionalAmount\": 6500,\n    \"reserveAmount\": 500,\n    \"walletFundingHoldAmount\": 1000\n}"
+              schema:
+                type: object
+                properties:
+                  amount:
+                    type: integer
+                    example: 10000
+                    default: 0
+                  currency:
+                    type: string
+                    example: USD
+                  promotionalAmount:
+                    type: integer
+                    example: 6500
+                    default: 0
+                  reserveAmount:
+                    type: integer
+                    example: 500
+                    default: 0
+                  walletFundingHoldAmount:
+                    type: integer
+                    example: 1000
+                    default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n    \"code\": \"invalid_merchant_id\",\n    \"message\": \"The provided merchant id is invalid.\",\n    \"type\": \"invalid_request_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_merchant_id
+                  message:
+                    type: string
+                    example: The provided merchant id is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}:
+    get:
+      summary: Get merchant
+      description: ''
+      operationId: get-merchant
+      parameters:
+      - name: merchantId
+        in: path
+        description: The id of the merchant
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"id\": \"a7faeef9-9b02-4b9f-bfca-9e0d6d240209\",\n    \"metadata\": {\n        \"appReloadConfig\": {\n            \"allowCustomAmount\": false,\n            \"presetAmounts\": [\n                {\n                    \"amount\": 2000,\n                    \"id\": \"1\",\n                    \"isMostPopular\": false\n                },\n                {\n                    \"amount\": 5000,\n                    \"id\": \"2\",\n                    \"isMostPopular\": true\n                },\n                {\n                    \"amount\": 10000,\n                    \"id\": \"3\",\n                    \"isMostPopular\": false\n                }\n            ]\n        },\n        \"autoReloadConfig\": {\n            \"maximumAutoReloadAmount\": 25000,\n            \"minimumAutoReloadAmount\": 500,\n            \"minimumAutoReloadThreshold\": 500\n        },\n        \"displayName\": \"\",\n        \"giftCardConfig\": {\n            \"isEnabled\": false\n        },\n        \"isAutoFundingEnabled\": false,\n        \"isTapToPayEnabled\": false,\n        \"omsProvider\": \"\",\n        \"paymentProcessor\": \"stripe_connect\",\n        \"promotions\": null,\n        \"userReferralConfig\": {\n            \"enabled\": true,\n            \"recipientCreditAmount\": 1000,\n            \"redemptionEvent\": \"add_balance\",\n            \"redemptionThresholdAmount\": 0,\n            \"senderCreditAmount\": 1000\n        }\n    },\n    \"name\": \"Bowies Cafe\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: a7faeef9-9b02-4b9f-bfca-9e0d6d240209
+                  metadata:
+                    type: object
+                    properties:
+                      appReloadConfig:
+                        type: object
+                        properties:
+                          allowCustomAmount:
+                            type: boolean
+                            example: false
+                            default: true
+                          presetAmounts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: integer
+                                  example: 2000
+                                  default: 0
+                                id:
+                                  type: string
+                                  example: '1'
+                                isMostPopular:
+                                  type: boolean
+                                  example: false
+                                  default: true
+                      autoReloadConfig:
+                        type: object
+                        properties:
+                          maximumAutoReloadAmount:
+                            type: integer
+                            example: 25000
+                            default: 0
+                          minimumAutoReloadAmount:
+                            type: integer
+                            example: 500
+                            default: 0
+                          minimumAutoReloadThreshold:
+                            type: integer
+                            example: 500
+                            default: 0
+                      displayName:
+                        type: string
+                        example: ''
+                      giftCardConfig:
+                        type: object
+                        properties:
+                          isEnabled:
+                            type: boolean
+                            example: false
+                            default: true
+                      isAutoFundingEnabled:
+                        type: boolean
+                        example: false
+                        default: true
+                      isTapToPayEnabled:
+                        type: boolean
+                        example: false
+                        default: true
+                      omsProvider:
+                        type: string
+                        example: ''
+                      paymentProcessor:
+                        type: string
+                        example: stripe_connect
+                      promotions: {}
+                      userReferralConfig:
+                        type: object
+                        properties:
+                          enabled:
+                            type: boolean
+                            example: true
+                            default: true
+                          recipientCreditAmount:
+                            type: integer
+                            example: 1000
+                            default: 0
+                          redemptionEvent:
+                            type: string
+                            example: add_balance
+                          redemptionThresholdAmount:
+                            type: integer
+                            example: 0
+                            default: 0
+                          senderCreditAmount:
+                            type: integer
+                            example: 1000
+                            default: 0
+                  name:
+                    type: string
+                    example: Bowies Cafe
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/promotional-accounts/{promotionalAccountId}:
+    get:
+      summary: Get promotional account
+      description: ''
+      operationId: get-promotional-account
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: promotionalAccountId
+        in: path
+        description: The id of the promotional account
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"balance\": {\n        \"amount\": 10900,\n        \"currency\": \"USD\"\n    },\n    \"created\": \"2024-04-10T19:20:45.948Z\",\n    \"id\": \"996671e9-2c52-44d7-84e5-245689d98ea2\",\n    \"metadata\": {\n        \"locality\": \"Heber\",\n        \"promotion date\": \"419\"\n    },\n    \"name\": \"promotional-account-1\",\n    \"referenceId\": \"222\",\n    \"updated\": \"2024-04-10T19:20:45.948Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 10900
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                  created:
+                    type: string
+                    example: '2024-04-10T19:20:45.948Z'
+                  id:
+                    type: string
+                    example: 996671e9-2c52-44d7-84e5-245689d98ea2
+                  metadata:
+                    type: object
+                    properties:
+                      locality:
+                        type: string
+                        example: Heber
+                      promotion date:
+                        type: string
+                        example: '419'
+                  name:
+                    type: string
+                    example: promotional-account-1
+                  referenceId:
+                    type: string
+                    example: '222'
+                  updated:
+                    type: string
+                    example: '2024-04-10T19:20:45.948Z'
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+    put:
+      summary: Update promotional account
+      description: ''
+      operationId: update-promotional-account
+      parameters:
+      - name: merchantId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: promotionalAccountId
+        in: path
+        description: The id of the promotional account.
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the promotional account
+                metadata:
+                  type: string
+                  description: JSON object of string key-value pairs that you can attach to the promotional account.
+                  format: json
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Success:
+                  value: "{\n    \"id\": \"996671e9-2c52-44d7-84e5-245689d98ea2\",\n    \"name\": \"promotional-account-1\",\n    \"referenceId\": \"222\",\n    \"metadata\": {\n        \"key\": \"value\",\n        \"key2\": \"value2\"\n    },\n    \"created\": \"2024-04-10T19:20:45.948Z\",\n    \"updated\": \"2024-04-11T19:20:45.948Z\"\n}"
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 996671e9-2c52-44d7-84e5-245689d98ea2
+                  name:
+                    type: string
+                    example: promotional-account-1
+                  referenceId:
+                    type: string
+                    example: '222'
+                  metadata:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        example: value
+                      key2:
+                        type: string
+                        example: value2
+                  created:
+                    type: string
+                    example: '2024-04-10T19:20:45.948Z'
+                  updated:
+                    type: string
+                    example: '2024-04-11T19:20:45.948Z'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: " {\n   \"code\": \"invalid_parameter\",\n     \"message\": \"The provided parameter [referenceId] is invalid.\",\n       \"type\": \"invalid_request_error\"\n }"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: invalid_parameter
+                  message:
+                    type: string
+                    example: The provided parameter [referenceId] is invalid.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+  /v1/merchants/{merchantId}/request-settlement:
+    post:
+      summary: Request settlement
+      description: ''
+      operationId: request-settlement
+      parameters:
+      - name: merchantId
+        in: path
+        description: The id of the merchant
+        schema:
+          type: string
+        required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - amount
+              - currency
+              properties:
+                amount:
+                  type: integer
+                  description: The requested settlement amount. A positive integer in the smallest currency unit (e.g. cents for USD).
+                  format: int32
+                currency:
+                  type: string
+                  description: The three-letter ISO currency code, in lowercase.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"settlementAmount\": 1200,\n    \"timestamp\": \"2023-01-23T00:00:00.000Z\",\n    \"transactionId\": \"f22f76b2-8512-4554-a7c4-ac91375ec42e\",\n    \"updatedMerchantBalance\":\n                {\n                  \"amount\": 300,\n                  \"currency\": \"USD\",\n                  \"promotionalAmount\": 0,\n                  \"reserveAmount\": 0,\n                  \"walletFundingHoldAmount\": 0\n                }\n\n}"
+              schema:
+                type: object
+                properties:
+                  settlementAmount:
+                    type: integer
+                    example: 1200
+                    default: 0
+                  timestamp:
+                    type: string
+                    example: '2023-01-23T00:00:00.000Z'
+                  transactionId:
+                    type: string
+                    example: f22f76b2-8512-4554-a7c4-ac91375ec42e
+                  updatedMerchantBalance:
+                    type: object
+                    properties:
+                      amount:
+                        type: integer
+                        example: 300
+                        default: 0
+                      currency:
+                        type: string
+                        example: USD
+                      promotionalAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      reserveAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+                      walletFundingHoldAmount:
+                        type: integer
+                        example: 0
+                        default: 0
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Bad Request:
+                  value: "{\n              \"code\": \"settlement_not_available\",\n              \"message\": \"The maximum number of settlements per day has been exceeded.\",\n              \"type\": \"invalid_request_error\"\n            }"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: settlement_not_available
+                  message:
+                    type: string
+                    example: The maximum number of settlements per day has been exceeded.
+                  type:
+                    type: string
+                    example: invalid_request_error
+        '500':
+          description: '500'
+          content:
+            application/json:
+              examples:
+                Internal Error:
+                  value: "{\n  \"code\": \"internal\",\n  \"message\": \"Something went wrong. Please try again later.\",\n  \"type\": \"api_error\"\n}"
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: internal
+                  message:
+                    type: string
+                    example: Something went wrong. Please try again later.
+                  type:
+                    type: string
+                    example: api_error
+      deprecated: false
+      tags:
+      - Merchants
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: API key in the Authorization header. Keys are prefixed ansa_sk_live_/ansa_sk_sandbox_ (merchant secret), ansa_cs_live_/ansa_cs_sandbox_ (client secret).
