@@ -1,0 +1,2967 @@
+{
+  "item": [
+    {
+      "id": "43669e69-af08-4ea6-85eb-9e45aec0a4f1",
+      "name": "Merchants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d2b7c9ca-dfc6-4821-a11f-ff33a9e6c440",
+          "name": "Calculate settlement",
+          "request": {
+            "name": "Calculate settlement",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "calculate-settlement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19208204-c839-492a-a4a4-35d4ba89b01a",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "calculate-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"availableSettlementAmount\\\": 1225,\\n    \\\"currency\\\": \\\"USD\\\",\\n    \\\"currentMerchantBalance\\\": {\\n        \\\"amount\\\": 1500,\\n        \\\"currency\\\": \\\"USD\\\",\\n        \\\"promotionalAmount\\\": 0,\\n        \\\"reserveAmount\\\": 0,\\n        \\\"walletFundingHoldAmount\\\": -275\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5101225-fb2b-41b6-af29-db0f08abdadc",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "calculate-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"invalid_merchant_id\\\",\\n    \\\"message\\\": \\\"The provided merchant id is invalid.\\\",\\n      \\\"type\\\": \\\"invalid_request_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd3c7278-9d63-4c8e-9efc-809b9f9b8891",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "calculate-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f06dbf64-754e-4e1b-9183-c0e37759de37",
+          "name": "Create campaign",
+          "request": {
+            "name": "Create campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The ID of the merchant. You will receive this constant value during onboarding."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"settings\": {\n    \"startAt\": \"<dateTime>\",\n    \"targetSegments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"endAt\": \"<dateTime>\",\n    \"expirationMetadata\": {\n      \"type\": \"<string>\",\n      \"xDaysAfterRedeeming\": {\n        \"numberOfDays\": \"<integer>\"\n      }\n    }\n  },\n  \"cashback\": {\n    \"percentCashback\": \"<integer>\"\n  },\n  \"reloadBonus\": {\n    \"type\": \"<string>\",\n    \"rewardTiers\": [\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      },\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      }\n    ]\n  },\n  \"promoCode\": {\n    \"code\": \"<string>\",\n    \"amount\": \"<integer>\"\n  },\n  \"drop\": {\n    \"amount\": \"<integer>\"\n  },\n  \"userCreationBonus\": {\n    \"amount\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ec2a52d-424c-4131-9dd5-e481324bedf5",
+              "name": "201",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The ID of the merchant. You will receive this constant value during onboarding."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"settings\": {\n    \"startAt\": \"<dateTime>\",\n    \"targetSegments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"endAt\": \"<dateTime>\",\n    \"expirationMetadata\": {\n      \"type\": \"<string>\",\n      \"xDaysAfterRedeeming\": {\n        \"numberOfDays\": \"<integer>\"\n      }\n    }\n  },\n  \"cashback\": {\n    \"percentCashback\": \"<integer>\"\n  },\n  \"reloadBonus\": {\n    \"type\": \"<string>\",\n    \"rewardTiers\": [\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      },\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      }\n    ]\n  },\n  \"promoCode\": {\n    \"code\": \"<string>\",\n    \"amount\": \"<integer>\"\n  },\n  \"drop\": {\n    \"amount\": \"<integer>\"\n  },\n  \"userCreationBonus\": {\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"9bbbf5cf-41fe-4057-a8cf-a94e379854a6\\\",\\n    \\\"name\\\": \\\"test-campaign\\\",\\n    \\\"reloadBonus\\\": {\\n        \\\"rewardTiers\\\": [\\n            {\\n                \\\"minAmount\\\": 100,\\n                \\\"promoAmount\\\": 100\\n            }\\n        ],\\n        \\\"type\\\": \\\"unlimited\\\"\\n    },\\n    \\\"settings\\\": {\\n        \\\"endAt\\\": \\\"2026-09-20T20:34:07.000Z\\\",\\n        \\\"expirationMetadata\\\": {\\n            \\\"type\\\": \\\"xDaysAfterRedeeming\\\",\\n            \\\"xDaysAfterRedeeming\\\": {\\n                \\\"numDays\\\": 1\\n            }\\n        },\\n        \\\"startAt\\\": \\\"2022-09-20T20:34:07.000Z\\\",\\n        \\\"targetSegments\\\": [\\n            {\\n                \\\"id\\\": \\\"28f7082f-d040-4eb3-b008-12e6319c4783\\\",\\n                \\\"name\\\": \\\"All Customers\\\"\\n            }\\n        ]\\n    },\\n    \\\"type\\\": \\\"reloadBonus\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "366b4bab-56f9-4131-b632-3e4b7c55bf31",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The ID of the merchant. You will receive this constant value during onboarding."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"settings\": {\n    \"startAt\": \"<dateTime>\",\n    \"targetSegments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"endAt\": \"<dateTime>\",\n    \"expirationMetadata\": {\n      \"type\": \"<string>\",\n      \"xDaysAfterRedeeming\": {\n        \"numberOfDays\": \"<integer>\"\n      }\n    }\n  },\n  \"cashback\": {\n    \"percentCashback\": \"<integer>\"\n  },\n  \"reloadBonus\": {\n    \"type\": \"<string>\",\n    \"rewardTiers\": [\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      },\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      }\n    ]\n  },\n  \"promoCode\": {\n    \"code\": \"<string>\",\n    \"amount\": \"<integer>\"\n  },\n  \"drop\": {\n    \"amount\": \"<integer>\"\n  },\n  \"userCreationBonus\": {\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"code\\\": 602,\\n    \\\"message\\\": \\\"name in body is required\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21e5fc82-9760-4821-86bb-a1fca70c75c7",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The ID of the merchant. You will receive this constant value during onboarding."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"settings\": {\n    \"startAt\": \"<dateTime>\",\n    \"targetSegments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"endAt\": \"<dateTime>\",\n    \"expirationMetadata\": {\n      \"type\": \"<string>\",\n      \"xDaysAfterRedeeming\": {\n        \"numberOfDays\": \"<integer>\"\n      }\n    }\n  },\n  \"cashback\": {\n    \"percentCashback\": \"<integer>\"\n  },\n  \"reloadBonus\": {\n    \"type\": \"<string>\",\n    \"rewardTiers\": [\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      },\n      {\n        \"minAmount\": \"<integer>\",\n        \"promoAmount\": \"<integer>\"\n      }\n    ]\n  },\n  \"promoCode\": {\n    \"code\": \"<string>\",\n    \"amount\": \"<integer>\"\n  },\n  \"drop\": {\n    \"amount\": \"<integer>\"\n  },\n  \"userCreationBonus\": {\n    \"amount\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5473213f-1730-43b7-8edf-9bf7184c61b6",
+          "name": "List campaigns",
+          "request": {
+            "name": "List campaigns",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The maximum number of campaigns to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "A cursor returned from a previous request to fetch the next or previous page."
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "<string>",
+                  "description": "Pagination direction. Either \"forward\" or \"backward\""
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Campaign status filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Campaign type filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "245134fb-853d-4ff4-a5e3-76baeb6d6dbb",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"campaigns\\\": [\\n        {\\n            \\\"id\\\": \\\"63a11091-9a3b-4685-be9c-d69ee6c79531\\\",\\n            \\\"name\\\": \\\"test-campaign\\\",\\n            \\\"reloadBonus\\\": {\\n                \\\"rewardTiers\\\": [\\n                    {\\n                        \\\"minAmount\\\": 100,\\n                        \\\"promoAmount\\\": 100\\n                    }\\n                ],\\n                \\\"type\\\": \\\"unlimited\\\"\\n            },\\n            \\\"settings\\\": {\\n                \\\"endAt\\\": \\\"2026-09-20T20:34:07.000Z\\\",\\n                \\\"expirationMetadata\\\": {\\n                    \\\"type\\\": \\\"xDaysAfterRedeeming\\\",\\n                    \\\"xDaysAfterRedeeming\\\": {\\n                        \\\"numDays\\\": 1\\n                    }\\n                },\\n                \\\"startAt\\\": \\\"2022-09-20T20:34:07.000Z\\\",\\n                \\\"targetSegments\\\": null\\n            },\\n            \\\"type\\\": \\\"reloadBonus\\\"\\n        },\\n        {\\n            \\\"id\\\": \\\"25c1bf84-7dcf-486c-9ef9-04ec24d63267\\\",\\n            \\\"name\\\": \\\"test-campaign\\\",\\n            \\\"reloadBonus\\\": {\\n                \\\"rewardTiers\\\": [\\n                    {\\n                        \\\"minAmount\\\": 100,\\n                        \\\"promoAmount\\\": 100\\n                    }\\n                ],\\n                \\\"type\\\": \\\"unlimited\\\"\\n            },\\n            \\\"settings\\\": {\\n                \\\"endAt\\\": \\\"2026-09-20T20:34:07.000Z\\\",\\n                \\\"expirationMetadata\\\": {\\n                    \\\"type\\\": \\\"xDaysAfterRedeeming\\\",\\n                    \\\"xDaysAfterRedeeming\\\": {\\n                        \\\"numDays\\\": 1\\n                    }\\n                },\\n                \\\"startAt\\\": \\\"2022-09-20T20:34:07.000Z\\\",\\n                \\\"targetSegments\\\": null\\n            },\\n            \\\"type\\\": \\\"reloadBonus\\\"\\n        }\\n    ],\\n    \\\"cursor\\\": \\\"eyJGaXJzdENyZWF0ZWRBdCI6IjIwMjUtMDQtMjlUMjE6Mjc6NTEuNDg1MjY1WiIsIkZpcnN0SWQiOiI2M2ExMTA5MS05YTNiLTQ2ODUtYmU5Yy1kNjllZTZjNzk1MzEiLCJMYXN0Q3JlYXRlZEF0IjoiMjAyNS0wNC0yOVQyMToyNzozMS43MzgyNTZaIiwiTGFzdElkIjoiMjVjMWJmODQtN2RjZi00ODZjLTllZjktMDRlYzI0ZDYzMjY3In0=\\\",\\n    \\\"hasMore\\\": true\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b79e230-d5d1-423e-9d68-457596af601d",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"code\\\": 606,\\n    \\\"message\\\": \\\"direction in query should be one of [forward backward]\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c73a922-ac56-49b9-b093-b39416b274c3",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "323f50bf-e97b-4a4b-a079-f60948efe8bd",
+          "name": "Create promotional account",
+          "request": {
+            "name": "Create promotional account",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "promotional-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"referenceId\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81ad845f-0dec-4854-9046-3792e83eb7e1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"referenceId\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"balance\\\": {\\n        \\\"amount\\\": 0,\\n        \\\"currency\\\": \\\"USD\\\"\\n    },\\n    \\\"created\\\": \\\"2024-04-10T19:20:45.948Z\\\",\\n    \\\"id\\\": \\\"996671e9-2c52-44d7-84e5-245689d98ea2\\\",\\n    \\\"metadata\\\": {\\n        \\\"key\\\": \\\"value\\\",\\n        \\\"key2\\\": \\\"value2\\\"\\n    },\\n    \\\"name\\\": \\\"promotional-account-1\\\",\\n    \\\"referenceId\\\": \\\"222\\\",\\n    \\\"updated\\\": \\\"2024-04-10T19:20:45.948Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "797fbd22-5224-4468-a009-45476b6c76d2",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"referenceId\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\" {\\n   \\\"code\\\": \\\"invalid_parameter\\\",\\n     \\\"message\\\": \\\"The provided parameter [referenceId] is invalid.\\\",\\n       \\\"type\\\": \\\"invalid_request_error\\\",\\n }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "639821dc-0b8b-43c5-810b-3fac098aca5d",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"referenceId\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e2bf723-69a0-4c50-b108-90f8858787c3",
+          "name": "List promotional accounts",
+          "request": {
+            "name": "List promotional accounts",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "promotional-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb6c3e1b-d590-4401-9184-1079ddb0f7fd",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"promotionalAccounts\\\": [\\n        {\\n            \\\"balance\\\": {\\n                \\\"amount\\\": 0,\\n                \\\"currency\\\": \\\"usd\\\"\\n            },\\n            \\\"created\\\": \\\"2024-04-10T19:20:45.948Z\\\",\\n            \\\"id\\\": \\\"996671e9-2c52-44d7-84e5-245689d98ea2\\\",\\n            \\\"metadata\\\": {\\n                \\\"key\\\": \\\"value\\\",\\n                \\\"key2\\\": \\\"value2\\\"\\n            },\\n            \\\"name\\\": \\\"promotional-account-1\\\",\\n            \\\"referenceId\\\": \\\"222\\\",\\n            \\\"updated\\\": \\\"2024-04-10T19:20:45.948Z\\\"\\n        },\\n        {\\n            \\\"balance\\\": {\\n                \\\"amount\\\": 99928,\\n                \\\"currency\\\": \\\"USD\\\"\\n            },\\n            \\\"created\\\": \\\"2023-08-23T17:29:22.167Z\\\",\\n            \\\"id\\\": \\\"c24b1f46-4249-4335-9eaf-a25f6ac6db9f\\\",\\n            \\\"metadata\\\": {},\\n            \\\"name\\\": \\\"\\\",\\n            \\\"referenceId\\\": \\\"default\\\",\\n            \\\"updated\\\": \\\"2024-03-12T04:07:07.587Z\\\"\\n        }\\n    ]\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4e5fb23-3270-4893-a20a-f077bfa1320f",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df3add29-0b76-40b2-8d4d-150c742918d8",
+          "name": "Fund promotional account",
+          "request": {
+            "name": "Fund promotional account",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "fund-promotional-account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"promotionalAccountId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b2e6998-5a90-4e31-b5ed-589df5c465a3",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-promotional-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"promotionalAccountId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"amount\\\": 11000,\\n    \\\"timestamp\\\": \\\"2024-04-10T21:48:28.716Z\\\",\\n    \\\"transactionId\\\": \\\"fbb0821f-8de6-454a-840f-3b3fc6bb59be\\\",\\n    \\\"updatedPromoFundsBalance\\\": 11000,\\n    \\\"updatedReserveBalance\\\": 989000\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6336f570-a2ac-4bd7-b32d-df4ac259a216",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-promotional-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"promotionalAccountId\": \"<string>\",\n  \"note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64c1b118-760d-4381-8be4-8be8e779b57b",
+          "name": "Fund wallet funding hold account",
+          "request": {
+            "name": "Fund wallet funding hold account",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "fund-wallet-funding-hold-account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"label\": \"<string>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "425605fc-fc83-4ec2-ae00-ab9141748058",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-wallet-funding-hold-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"label\": \"<string>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"amount\\\": 750,\\n    \\\"currency\\\": \\\"USD\\\",\\n    \\\"transactionId\\\": \\\"14477927-52fa-4bce-bef0-90901ea4ecad\\\",\\n    \\\"timestamp\\\": \\\"2025-05-07T21:53:22.515Z\\\",\\n    \\\"updatedWalletFundingHoldBalance\\\": {\\n        \\\"amount\\\": 750,\\n        \\\"currency\\\": \\\"USD\\\"\\n    },\\n    \\\"updatedReserveBalance\\\": {\\n        \\\"amount\\\": 250,\\n        \\\"currency\\\": \\\"USD\\\"\\n    },\\n    \\\"additionalInfo\\\": {},\\n    \\\"label\\\": \\\"\\\",\\n    \\\"metadata\\\": {}\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d4a9244-c3ca-4cb0-bf67-0d3b27b708f3",
+              "name": "402",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-wallet-funding-hold-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"label\": \"<string>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"insufficient_funds\\\",\\n    \\\"message\\\": \\\"The request amount was higher than the available funds.\\\",\\n      \\\"type\\\": \\\"invalid_request_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "567f787d-f10c-4b0d-8d14-968efac82e03",
+              "name": "409",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-wallet-funding-hold-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"label\": \"<string>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"duplicate_request\\\",\\n  \\\"message\\\": \\\"The provided amount is invalid.\\\",\\n  \\\"type\\\": \\\"invalid_request_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39fdea95-ccee-4288-9e28-5140ee152496",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "fund-wallet-funding-hold-account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"label\": \"<string>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fea813b-b6b0-4a84-918e-99e90dd3e483",
+          "name": "Get campaign",
+          "request": {
+            "name": "Get campaign",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "campaigns",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The id of the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b4e9260-3a17-4d96-8551-e603579ac1c1",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The id of the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"9bbbf5cf-41fe-4057-a8cf-a94e379854a6\\\",\\n    \\\"name\\\": \\\"test-campaign\\\",\\n    \\\"reloadBonus\\\": {\\n        \\\"rewardTiers\\\": [\\n            {\\n                \\\"minAmount\\\": 100,\\n                \\\"promoAmount\\\": 100\\n            }\\n        ],\\n        \\\"type\\\": \\\"unlimited\\\"\\n    },\\n    \\\"settings\\\": {\\n        \\\"endAt\\\": \\\"2026-09-20T20:34:07.000Z\\\",\\n        \\\"expirationMetadata\\\": {\\n            \\\"type\\\": \\\"xDaysAfterRedeeming\\\",\\n            \\\"xDaysAfterRedeeming\\\": {\\n                \\\"numDays\\\": 1\\n            }\\n        },\\n        \\\"startAt\\\": \\\"2022-09-20T20:34:07.000Z\\\",\\n        \\\"targetSegments\\\": [\\n            {\\n                \\\"id\\\": \\\"28f7082f-d040-4eb3-b008-12e6319c4783\\\",\\n                \\\"name\\\": \\\"All Customers\\\"\\n            }\\n        ]\\n    },\\n    \\\"type\\\": \\\"reloadBonus\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f377b2b-761c-4b71-b3dc-02aacc9b080b",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "campaigns",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The id of the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a41560e-486e-4744-bd4f-4144fe22d724",
+          "name": "Get merchant balance",
+          "request": {
+            "name": "Get merchant balance",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85489eb1-8269-46f9-ba1c-85c35f5baa16",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"amount\\\": 10000,\\n    \\\"currency\\\": \\\"USD\\\",\\n    \\\"promotionalAmount\\\": 6500,\\n    \\\"reserveAmount\\\": 500,\\n    \\\"walletFundingHoldAmount\\\": 1000\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30cfe483-48a2-4d22-b9a6-9e22e885c60a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"code\\\": \\\"invalid_merchant_id\\\",\\n    \\\"message\\\": \\\"The provided merchant id is invalid.\\\",\\n    \\\"type\\\": \\\"invalid_request_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce1afde8-7c1f-4a7d-8855-efa827fc1539",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f5f1423-e07d-4629-a970-f1eba7d8f0df",
+          "name": "Get merchant",
+          "request": {
+            "name": "Get merchant",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcdc1542-6a66-4f8f-9d1c-47bdd2699ee5",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"a7faeef9-9b02-4b9f-bfca-9e0d6d240209\\\",\\n    \\\"metadata\\\": {\\n        \\\"appReloadConfig\\\": {\\n            \\\"allowCustomAmount\\\": false,\\n            \\\"presetAmounts\\\": [\\n                {\\n                    \\\"amount\\\": 2000,\\n                    \\\"id\\\": \\\"1\\\",\\n                    \\\"isMostPopular\\\": false\\n                },\\n                {\\n                    \\\"amount\\\": 5000,\\n                    \\\"id\\\": \\\"2\\\",\\n                    \\\"isMostPopular\\\": true\\n                },\\n                {\\n                    \\\"amount\\\": 10000,\\n                    \\\"id\\\": \\\"3\\\",\\n                    \\\"isMostPopular\\\": false\\n                }\\n            ]\\n        },\\n        \\\"autoReloadConfig\\\": {\\n            \\\"maximumAutoReloadAmount\\\": 25000,\\n            \\\"minimumAutoReloadAmount\\\": 500,\\n            \\\"minimumAutoReloadThreshold\\\": 500\\n        },\\n        \\\"displayName\\\": \\\"\\\",\\n        \\\"giftCardConfig\\\": {\\n            \\\"isEnabled\\\": false\\n        },\\n        \\\"isAutoFundingEnabled\\\": false,\\n        \\\"isTapToPayEnabled\\\": false,\\n        \\\"omsProvider\\\": \\\"\\\",\\n        \\\"paymentProcessor\\\": \\\"stripe_connect\\\",\\n        \\\"promotions\\\": null,\\n        \\\"userReferralConfig\\\": {\\n            \\\"enabled\\\": true,\\n            \\\"recipientCreditAmount\\\": 1000,\\n            \\\"redemptionEvent\\\": \\\"add_balance\\\",\\n            \\\"redemptionThresholdAmount\\\": 0,\\n            \\\"senderCreditAmount\\\": 1000\\n        }\\n    },\\n    \\\"name\\\": \\\"Bowies Cafe\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "165fbe3b-faca-417e-938d-4b064b4695b3",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36f2860b-13c5-49c4-9ee5-c7ae391c4400",
+          "name": "Get promotional account",
+          "request": {
+            "name": "Get promotional account",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "promotional-accounts",
+                ":promotionalAccountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promotionalAccountId",
+                  "description": "(Required) The id of the promotional account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93582577-1910-4dff-b50a-b71ae8f24ac6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts",
+                    ":promotionalAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionalAccountId",
+                      "description": "(Required) The id of the promotional account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"balance\\\": {\\n        \\\"amount\\\": 10900,\\n        \\\"currency\\\": \\\"USD\\\"\\n    },\\n    \\\"created\\\": \\\"2024-04-10T19:20:45.948Z\\\",\\n    \\\"id\\\": \\\"996671e9-2c52-44d7-84e5-245689d98ea2\\\",\\n    \\\"metadata\\\": {\\n        \\\"locality\\\": \\\"Heber\\\",\\n        \\\"promotion date\\\": \\\"419\\\"\\n    },\\n    \\\"name\\\": \\\"promotional-account-1\\\",\\n    \\\"referenceId\\\": \\\"222\\\",\\n    \\\"updated\\\": \\\"2024-04-10T19:20:45.948Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32cf4cc2-5f38-42f2-870c-3a9aa2a0cb6c",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts",
+                    ":promotionalAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionalAccountId",
+                      "description": "(Required) The id of the promotional account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "384faee9-754c-4337-aa54-5a30107d4dc1",
+          "name": "Update promotional account",
+          "request": {
+            "name": "Update promotional account",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "promotional-accounts",
+                ":promotionalAccountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "promotionalAccountId",
+                  "description": "(Required) The id of the promotional account."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61a7c75c-174b-495e-a963-d1fc1c290ea8",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts",
+                    ":promotionalAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionalAccountId",
+                      "description": "(Required) The id of the promotional account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"id\\\": \\\"996671e9-2c52-44d7-84e5-245689d98ea2\\\",\\n    \\\"name\\\": \\\"promotional-account-1\\\",\\n    \\\"referenceId\\\": \\\"222\\\",\\n    \\\"metadata\\\": {\\n        \\\"key\\\": \\\"value\\\",\\n        \\\"key2\\\": \\\"value2\\\"\\n    },\\n    \\\"created\\\": \\\"2024-04-10T19:20:45.948Z\\\",\\n    \\\"updated\\\": \\\"2024-04-11T19:20:45.948Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07b2745c-a096-4510-b06c-a6e575d6ee80",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts",
+                    ":promotionalAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionalAccountId",
+                      "description": "(Required) The id of the promotional account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\" {\\n   \\\"code\\\": \\\"invalid_parameter\\\",\\n     \\\"message\\\": \\\"The provided parameter [referenceId] is invalid.\\\",\\n       \\\"type\\\": \\\"invalid_request_error\\\"\\n }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2de85664-6a87-4854-a315-550a9a05f58f",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "promotional-accounts",
+                    ":promotionalAccountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "promotionalAccountId",
+                      "description": "(Required) The id of the promotional account."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"metadata\": \"<json>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a036daa-00d5-4035-9b61-9fcdcc5b4af8",
+          "name": "Request settlement",
+          "request": {
+            "name": "Request settlement",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "merchants",
+                ":merchantId",
+                "request-settlement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "merchantId",
+                  "description": "(Required) The id of the merchant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b19430ee-fef5-4dd7-b023-27217386f79e",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "request-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"settlementAmount\\\": 1200,\\n    \\\"timestamp\\\": \\\"2023-01-23T00:00:00.000Z\\\",\\n    \\\"transactionId\\\": \\\"f22f76b2-8512-4554-a7c4-ac91375ec42e\\\",\\n    \\\"updatedMerchantBalance\\\":\\n                {\\n                  \\\"amount\\\": 300,\\n                  \\\"currency\\\": \\\"USD\\\",\\n                  \\\"promotionalAmount\\\": 0,\\n                  \\\"reserveAmount\\\": 0,\\n                  \\\"walletFundingHoldAmount\\\": 0\\n                }\\n\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3432e89a-147c-43fd-ba26-0db3b67abe5f",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "request-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n              \\\"code\\\": \\\"settlement_not_available\\\",\\n              \\\"message\\\": \\\"The maximum number of settlements per day has been exceeded.\\\",\\n              \\\"type\\\": \\\"invalid_request_error\\\"\\n            }\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d05cef8a-fcfd-49d2-ae48-f45e633464b9",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "merchants",
+                    ":merchantId",
+                    "request-settlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "merchantId",
+                      "description": "(Required) The id of the merchant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getansa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "87976815-feb2-4348-8a51-0229e70e8766",
+    "name": "Ansa Add Incentive Merchants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).",
+      "type": "text/plain"
+    }
+  }
+}

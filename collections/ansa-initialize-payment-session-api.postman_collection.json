@@ -1,0 +1,202 @@
+{
+  "item": [
+    {
+      "id": "62afe5d8-987d-401c-a7aa-54c9aeda0418",
+      "name": "Initialize Payment Session",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3606e89d-c8ad-4d77-acab-58bbfcc17ce1",
+          "name": "Initialize payment session",
+          "request": {
+            "name": "Initialize payment session",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "initialize-payment-session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "00fc673e-7150-4ecd-84ef-bb054bb9b530",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "initialize-payment-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"id\\\":\\\"9f656bb4-7e9e-450f-8cf6-647cf029454d\\\",\\n\\t\\\"clientSecret\\\": \\\"ansa_cs_sandbox_+v1234512345\\\",\\n\\t\\\"customerId\\\":\\\"11f7d38b-162f-4802-9b71-e96f59a8411d\\\",\\n\\t\\\"created\\\":\\\"2022-12-08T23:47:41.643Z\\\",\\n\\t\\\"validUntil\\\":\\\"2022-12-09T23:47:41.643Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a4a1c34-4fb7-48bb-a704-f2fb747be2e5",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "initialize-payment-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getansa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c3b1cc15-28af-46de-a542-4e58e0ad75e7",
+    "name": "Ansa Add Incentive Initialize Payment Session API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).",
+      "type": "text/plain"
+    }
+  }
+}

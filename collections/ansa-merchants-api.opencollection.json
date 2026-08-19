@@ -1,0 +1,343 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Merchants API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Merchants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Calculate settlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/calculate-settlement",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate settlement"
+        },
+        {
+          "info": {
+            "name": "List campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/campaigns",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of campaigns to return."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor returned from a previous request to fetch the next or previous page."
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Pagination direction. Either \"forward\" or \"backward\""
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Campaign status filter"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Campaign type filter"
+              },
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant."
+              }
+            ]
+          },
+          "docs": "List campaigns"
+        },
+        {
+          "info": {
+            "name": "Create campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/campaigns",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the merchant. You will receive this constant value during onboarding."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create campaign"
+        },
+        {
+          "info": {
+            "name": "List promotional accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/promotional-accounts",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List promotional accounts"
+        },
+        {
+          "info": {
+            "name": "Create promotional account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/promotional-accounts",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create promotional account"
+        },
+        {
+          "info": {
+            "name": "Fund promotional account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/fund-promotional-account",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fund promotional account"
+        },
+        {
+          "info": {
+            "name": "Fund wallet funding hold account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/fund-wallet-funding-hold-account",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fund wallet funding hold account"
+        },
+        {
+          "info": {
+            "name": "Get campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/campaigns/:campaignId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant."
+              },
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the campaign."
+              }
+            ]
+          },
+          "docs": "Get campaign"
+        },
+        {
+          "info": {
+            "name": "Get merchant balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/balance",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant."
+              }
+            ]
+          },
+          "docs": "Get merchant balance"
+        },
+        {
+          "info": {
+            "name": "Get merchant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant"
+              }
+            ]
+          },
+          "docs": "Get merchant"
+        },
+        {
+          "info": {
+            "name": "Get promotional account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/promotional-accounts/:promotionalAccountId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "promotionalAccountId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the promotional account"
+              }
+            ]
+          },
+          "docs": "Get promotional account"
+        },
+        {
+          "info": {
+            "name": "Update promotional account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/promotional-accounts/:promotionalAccountId",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "promotionalAccountId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the promotional account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update promotional account"
+        },
+        {
+          "info": {
+            "name": "Request settlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/merchants/:merchantId/request-settlement",
+            "params": [
+              {
+                "name": "merchantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the merchant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request settlement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

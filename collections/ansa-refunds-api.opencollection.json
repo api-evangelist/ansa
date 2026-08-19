@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Refunds API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/refunds/:refundId",
+            "params": [
+              {
+                "name": "refundId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get refund"
+        },
+        {
+          "info": {
+            "name": "Refund to balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/refunds/balance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refund to balance"
+        },
+        {
+          "info": {
+            "name": "Refund to payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/refunds/payment-method",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refund to payment method"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Initialize Payment Session API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Initialize Payment Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize payment session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/initialize-payment-session",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize payment session"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

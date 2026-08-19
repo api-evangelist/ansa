@@ -1,0 +1,512 @@
+{
+  "item": [
+    {
+      "id": "5cdf3785-6e62-413d-bd20-4bae4b1b7f40",
+      "name": "Refunds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45eb7d1d-a893-4c9c-8b0c-8a743fbf3845",
+          "name": "Get refund",
+          "request": {
+            "name": "Get refund",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "refunds",
+                ":refundId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "refundId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29fc84a5-51e9-4f37-a297-9a7b4f6ce551",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    ":refundId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refundId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"id\\\": \\\"db412735-7c1d-438d-9b66-18f89c028af1\\\",\\n\\t\\\"refundedTransactionId\\\": \\\"d6ab7103-4128-4b38-8686-28875afc40c4\\\",\\n\\t\\\"customerId\\\": \\\"11f7d38b-162f-4802-9b71-e96f59a8411d\\\",\\n\\t\\\"type\\\": \\\"payment_method\\\",\\n\\t\\\"amount\\\": 150, \\n\\t\\\"currency\\\": \\\"USD\\\",\\n\\t\\\"reason\\\": \\\"refund requested by a customer\\\",\\n\\t\\\"status\\\": \\\"succeeded\\\",\\n\\t\\\"metadata\\\": {\\\"key\\\": \\\"value\\\"},\\n\\t\\\"created\\\": \\\"2022-12-09T00:30:40.840Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2ce9bc4-f213-41c8-a140-fd3bb413b1cf",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    ":refundId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refundId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a16c30e-cd37-4ce3-b1e2-e3523fa0eae9",
+          "name": "Refund to balance",
+          "request": {
+            "name": "Refund to balance",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "refunds",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ed5df457-e205-4aa4-be3c-85e00676b186",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"id\\\": \\\"db412735-7c1d-438d-9b66-18f89c028af1\\\",\\n\\t\\\"transactionId\\\": \\\"db412735-7c1d-438d-9b66-18f89c028af1\\\",\\n  \\\"refundedTransactionId\\\": \\\"d6ab7103-4128-4b38-8686-28875afc40c4\\\",\\n\\t\\\"customerId\\\": \\\"11f7d38b-162f-4802-9b71-e96f59a8411d\\\",\\n\\t\\\"type\\\": \\\"balance\\\",\\n\\t\\\"amount\\\": 150, \\n\\t\\\"currency\\\": \\\"USD\\\",\\n\\t\\\"reason\\\": \\\"refund requested by a customer\\\",\\n\\t\\\"status\\\": \\\"succeeded\\\",\\n\\t\\\"metadata\\\": {\\\"key\\\": \\\"value\\\"},\\n\\t\\\"created\\\": \\\"2022-12-09T00:30:40.840Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "628f1009-cc33-4013-8cee-17c577fd97b6",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2dad2ef-bf95-4ea4-a196-72a86bfc46fd",
+          "name": "Refund to payment method",
+          "request": {
+            "name": "Refund to payment method",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "refunds",
+                "payment-method"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a274c3d-4bb4-49e6-a4f6-a57181cabf25",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    "payment-method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n\\t\\\"id\\\": \\\"db412735-7c1d-438d-9b66-18f89c028af1\\\",\\n\\t\\\"transactionId\\\": \\\"db412735-7c1d-438d-9b66-18f89c028af1\\\",\\n  \\\"refundedTransactionId\\\": \\\"d6ab7103-4128-4b38-8686-28875afc40c4\\\",\\n\\t\\\"customerId\\\": \\\"11f7d38b-162f-4802-9b71-e96f59a8411d\\\",\\n\\t\\\"type\\\": \\\"payment_method\\\",\\n\\t\\\"amount\\\": 150, \\n\\t\\\"currency\\\": \\\"USD\\\",\\n\\t\\\"reason\\\": \\\"refund requested by a customer\\\",\\n\\t\\\"status\\\": \\\"succeeded\\\",\\n\\t\\\"metadata\\\": {\\\"key\\\": \\\"value\\\"},\\n\\t\\\"created\\\": \\\"2022-12-09T00:30:40.840Z\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "332a4c84-baae-4cdf-be7c-48a2dae3268b",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "refunds",
+                    "payment-method"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionIdToRefund\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"reason\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getansa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "30c6743d-0233-4abb-934e-fbc2528e1888",
+    "name": "Ansa Add Incentive Refunds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).",
+      "type": "text/plain"
+    }
+  }
+}

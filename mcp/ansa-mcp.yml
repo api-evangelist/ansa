@@ -168,3 +168,9 @@ tools:
 - name: use_balance
   description: Use balance
   source_operation: openapi/ansa-openapi-original.yml#use-balance
+deployment:
+  mode: none
+  verified: derived
+  tools: 53
+  checked: '2026-08-12'
+  source: catalog MCP census

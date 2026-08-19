@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Add Incentive",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Copy of Fund customer balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/:customerId/add-incentive",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Copy of Fund customer balance"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

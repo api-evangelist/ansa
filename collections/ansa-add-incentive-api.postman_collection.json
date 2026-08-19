@@ -1,0 +1,290 @@
+{
+  "item": [
+    {
+      "id": "8c88a332-cd45-4a11-a0a2-f75bde3cda6d",
+      "name": "Add Incentive",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a42af542-2d37-4801-98d8-30b9b470d084",
+          "name": "Copy of Fund customer balance",
+          "request": {
+            "name": "Copy of Fund customer balance",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                ":customerId",
+                "add-incentive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"label\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  },\n  \"expirationMetadata\": {\n    \"expirationType\": \"\",\n    \"numDays\": \"<integer>\",\n    \"fixedDate\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "848bf8d6-40a9-4185-a0f4-97f8a1b2403c",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":customerId",
+                    "add-incentive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"label\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  },\n  \"expirationMetadata\": {\n    \"expirationType\": \"\",\n    \"numDays\": \"<integer>\",\n    \"fixedDate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"transactionId\\\": \\\"5d92253c-24ea-4680-936b-7c3db183877d\\\",\\n    \\\"customerId\\\": \\\"09c02419-9ef4-41b5-979d-e9793dadb101\\\",\\n    \\\"currentBalance\\\": {\\n        \\\"amount\\\": 850,\\n        \\\"currency\\\": \\\"USD\\\"\\n    },\\n    \\\"additionalInfo\\\": null,\\n    \\\"label\\\": \\\"\\\",\\n    \\\"metadata\\\": null,\\n    \\\"timestamp\\\": \\\"2025-05-02T20:48:44.673Z\\\",\\n    \\\"expirationInfo\\\": {\\n      \\\"expirationType\\\": \\\"x_days_after_redeeming\\\",       \\n\\t\\t  \\\"numDays\\\": 6,\\n      \\\"expiresAt\\\": \\\"2025-08-04T22:30:30.404Z\\\"\\n    },\\n    \\\"promoInfo\\\": {\\n        \\\"promoCodeId\\\": null,\\n        \\\"promotionType\\\": \\\"fund_balance\\\",\\n        \\\"userReferralId\\\": null\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c836ba7-e735-4e60-9ee0-eb04fc429e92",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":customerId",
+                    "add-incentive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"label\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  },\n  \"expirationMetadata\": {\n    \"expirationType\": \"\",\n    \"numDays\": \"<integer>\",\n    \"fixedDate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"code\\\": \\\"invalid_parameter\\\",\\n    \\\"message\\\": \\\"The provided parameter [amount] is invalid.\\\",\\n    \\\"type\\\": \\\"invalid_request_error\\\"\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35cd514a-512e-4b36-97ac-7b8be94bf945",
+              "name": "500",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    ":customerId",
+                    "add-incentive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"label\": \"<string>\",\n  \"metadata\": \"<json>\",\n  \"additionalInfo\": {\n    \"storeId\": \"<string>\",\n    \"storeName\": \"<string>\"\n  },\n  \"expirationMetadata\": {\n    \"expirationType\": \"\",\n    \"numDays\": \"<integer>\",\n    \"fixedDate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"code\\\": \\\"internal\\\",\\n  \\\"message\\\": \\\"Something went wrong. Please try again later.\\\",\\n  \\\"type\\\": \\\"api_error\\\"\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.getansa.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92ade59c-ba85-4294-8e4b-fcf565ae211e",
+    "name": "Ansa Add Incentive API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).",
+      "type": "text/plain"
+    }
+  }
+}

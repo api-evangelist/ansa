@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Transactions API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get_v1-transactions-transactionid-refunds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/transactions/:transactionId/refunds",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "List transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/transactions",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "A cursor returned from a previous request to fetch the next or previous page."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of transactions to return in a single page of results. Max: 50"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction type."
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction label."
+              },
+              {
+                "name": "labelContains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction label with substring matching. "
+              }
+            ]
+          },
+          "docs": "List transactions"
+        },
+        {
+          "info": {
+            "name": "Update transaction metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getansa.com/v1/transactions/:transactionId/metadata",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the transaction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update transaction metadata"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

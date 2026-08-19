@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Customer Segments API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customer Segments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add customers to a segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customer_segments/:segmentId/customers",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "the id of the segment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add customers to a segment"
+        },
+        {
+          "info": {
+            "name": "Remove customers from segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getansa.com/v1/customer_segments/:segmentId/customers",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "the segment id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Remove customers from segment"
+        },
+        {
+          "info": {
+            "name": "List segments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customer_segments"
+          },
+          "docs": "List segments"
+        },
+        {
+          "info": {
+            "name": "Create segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customer_segments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create segment"
+        },
+        {
+          "info": {
+            "name": "List segment customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customer_segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "the segment id"
+              }
+            ]
+          },
+          "docs": "List segment customers"
+        },
+        {
+          "info": {
+            "name": "Update segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.getansa.com/v1/customer_segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the segment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update segment"
+        },
+        {
+          "info": {
+            "name": "Delete segment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getansa.com/v1/customer_segments/:segmentId",
+            "params": [
+              {
+                "name": "segmentId",
+                "value": "",
+                "type": "path",
+                "description": "the id of the segment"
+              }
+            ]
+          },
+          "docs": "Delete segment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

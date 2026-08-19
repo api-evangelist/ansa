@@ -1,0 +1,589 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ansa Add Incentive Customers API",
+    "version": "1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/add-balance",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add balance"
+        },
+        {
+          "info": {
+            "name": "Get customer referrals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/referrals",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer."
+              }
+            ]
+          },
+          "docs": "Get customer referrals"
+        },
+        {
+          "info": {
+            "name": "Claim customer referral",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/referrals",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Claim customer referral"
+        },
+        {
+          "info": {
+            "name": "Get auto reload configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/auto-reload",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get auto reload configuration"
+        },
+        {
+          "info": {
+            "name": "Set auto reload configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/auto-reload",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set auto reload configuration"
+        },
+        {
+          "info": {
+            "name": "Create customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create customer"
+        },
+        {
+          "info": {
+            "name": "List payment methods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/payment-methods",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List payment methods"
+        },
+        {
+          "info": {
+            "name": "Create payment method from token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/payment-methods",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create payment method from token"
+        },
+        {
+          "info": {
+            "name": "Get virtual card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/virtual-card",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the customer."
+              }
+            ]
+          },
+          "docs": "Get virtual card"
+        },
+        {
+          "info": {
+            "name": "Create virtual card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/virtual-card",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer."
+              }
+            ]
+          },
+          "docs": "Create virtual card"
+        },
+        {
+          "info": {
+            "name": "Update virtual card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getansa.com/v1/customers/:customerId/virtual-card",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update virtual card"
+        },
+        {
+          "info": {
+            "name": "Deactivate customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/customers/:customerId/deactivate",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of a customer."
+              }
+            ]
+          },
+          "docs": "Deactivate a [customer](https://docs.ansa.dev/reference/customer). Once a customer is deactivated, they will not be able to access any operations through the API authorized with a client secret, but operations on the deactivate customer authorized with a merchant secret key will continue to go through."
+        },
+        {
+          "info": {
+            "name": "Delete payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.getansa.com/v1/customers/:customerId/payment-methods/:paymentMethodId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "paymentMethodId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete payment method"
+        },
+        {
+          "info": {
+            "name": "Fund customer wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/fund-wallet",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to receive funds."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Fund customer wallet"
+        },
+        {
+          "info": {
+            "name": "Get customer reload promotion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/reload-config",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer"
+              }
+            ]
+          },
+          "docs": "Get customer reload promotion"
+        },
+        {
+          "info": {
+            "name": "Get customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "detailed",
+                "value": "",
+                "type": "query",
+                "description": "Include customer payment methods and auto reload config in the response."
+              }
+            ]
+          },
+          "docs": "Get customer"
+        },
+        {
+          "info": {
+            "name": "Update customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getansa.com/v1/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update customer"
+        },
+        {
+          "info": {
+            "name": "List customer segment membership",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/segments",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List customer segment membership"
+        },
+        {
+          "info": {
+            "name": "List customer transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.getansa.com/v1/customers/:customerId/transactions",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Optional cursor to fetch the next page of results."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of transactions to return in a single page of results. Max: 50"
+              },
+              {
+                "name": "transactionType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction type."
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction label."
+              },
+              {
+                "name": "labelContains",
+                "value": "",
+                "type": "query",
+                "description": "Filter by transaction label with substring matching. "
+              }
+            ]
+          },
+          "docs": "List customer transactions"
+        },
+        {
+          "info": {
+            "name": "Peer fund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/peer-fund",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "Customer id of the sender of the funds."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Peer fund"
+        },
+        {
+          "info": {
+            "name": "Push provision virtual card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/virtual-cards/:virtualCardId/provision",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer."
+              },
+              {
+                "name": "virtualCardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the issued virtual card."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Push provision virtual card"
+        },
+        {
+          "info": {
+            "name": "Redeem gift card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/redeem-gift-card",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Redeem gift card"
+        },
+        {
+          "info": {
+            "name": "Redeem promo code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/redeem",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Redeem promo code"
+        },
+        {
+          "info": {
+            "name": "Update payment method",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.getansa.com/v1/customers/:customerId/payment-method/:paymentMethodId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "paymentMethodId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update payment method"
+        },
+        {
+          "info": {
+            "name": "Use balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.getansa.com/v1/customers/:customerId/use-balance",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Use balance"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
