@@ -41,6 +41,14 @@ tags:
 - Digital Wallet
 - Loyalty
 - Incentives
+tags_raw:
+- Company
+- Fintech
+- Payments
+- Stored Value
+- Digital Wallet
+- Loyalty
+- Incentives
 - API
 apis:
 - aid: ansa:ansa-add-incentive-api
@@ -65,6 +73,8 @@ apis:
   humanURL: https://docs.ansa.dev/reference
   baseURL: https://api.getansa.com
   tags:
+  - Customer > Segments
+  tags_raw:
   - Customer Segments
   properties:
   - type: OpenAPI
@@ -146,6 +156,8 @@ apis:
   humanURL: https://docs.ansa.dev/reference
   baseURL: https://api.getansa.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
