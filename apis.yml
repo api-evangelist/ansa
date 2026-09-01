@@ -85,7 +85,7 @@ apis:
   humanURL: https://docs.ansa.dev/reference
   baseURL: https://api.getansa.com
   tags:
-  - Customer Segments
+  - Customer > Segments
   tags_raw:
   - Customer Segments
   properties:
