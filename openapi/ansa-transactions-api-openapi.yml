@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ansa Add Incentive Transactions API
+  title: Transactions API
   version: '1'
   description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
 servers:
@@ -139,6 +139,8 @@ paths:
       operationId: get_v1-transactions-transactionid-refunds
       tags:
       - Transactions
+      summary: Get v1 transactions transactionid refunds
+      x-summary-source: derived
   /v1/transactions:
     get:
       summary: List transactions

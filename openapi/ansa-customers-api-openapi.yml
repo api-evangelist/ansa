@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ansa Add Incentive Customers API
+  title: Ansa Customers API
   version: '1'
   description: Ansa stored-value wallet platform API. Reconstructed by API Evangelist from the per-operation OpenAPI 3.1 definitions embedded in the Ansa ReadMe documentation (docs.ansa.dev/reference).
 servers:
@@ -1157,7 +1157,7 @@ paths:
   /customers/{customerId}/deactivate:
     post:
       summary: Deactivate customer
-      description: Deactivate a [customer](https://docs.ansa.dev/reference/customer). Once a customer is deactivated, they will not be able to access any operations through the API authorized with a client secret, but operations on the deactivate customer authorized with a merchant secret key will continue to go through.
+      description: Deactivate a customer. Once a customer is deactivated, they will not be able to access any operations through the API authorized with a client secret, but operations on the deactivate customer authorized with a merchant secret key will continue to go through.
       operationId: deactivate-customer
       parameters:
       - name: customerId
