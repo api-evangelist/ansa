@@ -58,6 +58,7 @@ tags:
 - Digital Wallet
 - Loyalty
 - Incentives
+- Loyalty & Incentives
 tags_raw:
 - Company
 - Fintech
@@ -67,6 +68,7 @@ tags_raw:
 - Loyalty
 - Incentives
 - API
+- Loyalty & Incentives
 apis:
 - aid: ansa:ansa-add-incentive-api
   name: Ansa Add Incentive API
