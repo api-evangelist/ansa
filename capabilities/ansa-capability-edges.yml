@@ -1,0 +1,26 @@
+slug: ansa
+provider: Ansa
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Customer Segments
+  spec_file: ansa-customer-segments-api-openapi.yml
+  capability_id: BC-420.20
+  capability_id_l1: BC-420
+  capability_name: Customer Segmentation Management
+  confidence: 0.85
+  evidence: POST /v1/customer_segments 'Create segment'; POST /v1/customer_segments/{segmentId}/customers
+    'Add customers to a segment'; GET 'List segment customers'
+  reason: Operations create, update and populate customer segments and list their members — a direct realisation
+    of Customer Segmentation Management. Used downstream for targeting incentives, but the surface itself
+    is segmentation.
