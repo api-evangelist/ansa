@@ -64,6 +64,137 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Ansa is a company surfaced as a portfolio company of bain-capital-ventures and added to the API Evangelist network as a stub for enrichment. Sector: fintech. This profile is a lead awaiting the enrichment pipeline.
+Ansa is a stored-value platform that lets businesses launch branded digital wallets — closed-loop balances, incentives, and loyalty — to turn payments into a revenue and retention driver. Its REST API and mobile SDKs (AnsaCore and AnsaUI for iOS, Android, and React Native) cover customers, payment methods, wallet funding, transactions, refunds, customer segments, incentive campaigns, promotional accounts, virtual cards, settlements, and webhooks. Authentication is via environment-scoped API keys with idempotency and cursor pagination. Ansa is backed by Bain Capital Ventures and targets marketplaces, platform businesses, and quick-service restaurants.
 
-Backed by: bain-capital-ventures — https://www.ansa.dev/
+**Areas:** Company · Fintech · Payments · Stored Value · Digital Wallet · Loyalty · Incentives · Loyalty & Incentives
+
+## Ansa on APIs.io
+
+Everything profiled for Ansa is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ansa/](https://apis.io/providers/ansa/)** — or go straight to one of the APIs or properties below.
+
+### APIs (7)
+
+- [Ansa Add Incentive API](https://apis.io/apis/ansa/ansa-add-incentive-api/) — The Add Incentive API from Ansa — 1 operation(s) for add incentive.
+- [Ansa Customer Segments API](https://apis.io/apis/ansa/ansa-customer-segments-api/) — The Customer Segments API from Ansa — 3 operation(s) for customer segments.
+- [Ansa Customers API](https://apis.io/apis/ansa/ansa-customers-api/) — The Customers API from Ansa — 19 operation(s) for customers.
+- [Ansa Initialize Payment Session API](https://apis.io/apis/ansa/ansa-initialize-payment-session-api/) — The Initialize Payment Session API from Ansa — 1 operation(s) for initialize payment session.
+- [Ansa Merchants API](https://apis.io/apis/ansa/ansa-merchants-api/) — The Merchants API from Ansa — 10 operation(s) for merchants.
+- [Ansa Refunds API](https://apis.io/apis/ansa/ansa-refunds-api/) — The Refunds API from Ansa — 3 operation(s) for refunds.
+- [Ansa Transactions API](https://apis.io/apis/ansa/ansa-transactions-api/) — The Transactions API from Ansa — 3 operation(s) for transactions.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Ansa Webhooks](https://apis.io/asyncapis/ansa/ansa-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [ansa](https://apis.io/servers/ansa/ansa/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Ansa Agentic Access](https://apis.io/agentic-access/ansa/ansa-agentic-access/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Ansa Add Incentive API](https://apis.io/collections/ansa/open-ansa-add-incentive-api/)
+- [Ansa Add Incentive Customer Segments API](https://apis.io/collections/ansa/open-ansa-customer-segments-api/)
+- [Ansa Add Incentive Customers API](https://apis.io/collections/ansa/open-ansa-customers-api/)
+- [Ansa Add Incentive Initialize Payment Session API](https://apis.io/collections/ansa/open-ansa-initialize-payment-session-api/)
+- [Ansa Add Incentive Merchants API](https://apis.io/collections/ansa/open-ansa-merchants-api/)
+- [Ansa Add Incentive Refunds API](https://apis.io/collections/ansa/open-ansa-refunds-api/)
+- [Ansa Add Incentive Transactions API](https://apis.io/collections/ansa/open-ansa-transactions-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Ansa Openapi Overlay](https://apis.io/overlays/ansa/ansa-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ansa Authentication](https://apis.io/security/ansa/ansa-authentication/)
+- [Ansa Domain Security](https://apis.io/security/ansa/ansa-domain-security/)
+- [Ansa Trust Center](https://apis.io/security/ansa/ansa-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ansa.dev/)
+- [Documentation](https://docs.ansa.dev/docs)
+- [Getting started](https://docs.ansa.dev/docs/get-started-with-ansa)
+- [API reference](https://docs.ansa.dev/reference)
+- [Blog](https://www.ansa.dev/blog)
+- [Terms of service](https://www.ansa.dev/terms-of-service)
+- [Privacy policy](https://www.ansa.dev/privacy-policy)
+- [GitHub](https://github.com/GetAnsa)
+- [Status](https://status.getansa.com/)
+
+## API Evangelist rating
+
+**Kin Score 47.7** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 55.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 54.2 |
+| Access clarity | 43.4 |
+
+**Agent readiness 38.9** — agent-native
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 33.9** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ansa/](https://apis.io/providers/ansa/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ansa: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ansa/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
